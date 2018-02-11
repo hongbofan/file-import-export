@@ -22,10 +22,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="export" />
         <module name="import" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="export" target="1.8" />
       <module name="file-import-export" target="1.8" />
       <module name="import" target="1.8" />
     </bytecodeTargetLevel>

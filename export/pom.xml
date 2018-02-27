@@ -11,5 +11,16 @@
 
     <artifactId>flyread-file-export</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>org.jxls</groupId>
+            <artifactId>jxls</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jxls</groupId>
+            <artifactId>jxls-poi</artifactId>
+            <version>1.0.9</version>
+        </dependency>
+    </dependencies>
 </project>

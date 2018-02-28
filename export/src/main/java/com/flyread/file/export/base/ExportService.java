@@ -7,5 +7,5 @@ import com.flyread.file.export.model.ExportResponse;
  * @author  hongbf on 2018/2/11.
  */
 public interface ExportService {
-    ExportResponse export(ExportRequest request,ExportResponse response);
+    ExportResponse export();
 }

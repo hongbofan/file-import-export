@@ -24,44 +24,25 @@ public class ImportUtil {
     private static final Pattern points_ptrn = Pattern.compile("0.0+_*[^/s]+");
 
     public static Object getCellValue(Cell cell) {
-        Object value = null;
-        switch (cell.getCellTypeEnum()) {
-            case _NONE:
+        Object value;
+        switch (cell.getCellType()) {
+            case 0:
+                value = cell.getNumericCellValue();
                 break;
-            case STRING:
+            case 1:
                 value = cell.getStringCellValue();
                 break;
-            case NUMERIC:
-                if(DateUtil.isCellDateFormatted(cell)){ //日期
-                    value = sdf.format(DateUtil.getJavaDate(cell.getNumericCellValue()));
-                } else if("@".equals(cell.getCellStyle().getDataFormatString())
-                        || "General".equals(cell.getCellStyle().getDataFormatString())
-                        || "0_ ".equals(cell.getCellStyle().getDataFormatString())){
-                    //文本  or 常规 or 整型数值
-                    value = df.format(cell.getNumericCellValue());
-                } /*else if(points_ptrn.matcher(cell.getCellStyle().getDataFormatString()).matches()){ //正则匹配小数类型
-                    value = cell.getNumericCellValue();  //直接显示
-                }*/ else if("0.00E+00".equals(cell.getCellStyle().getDataFormatString())){//科学计数
-                    value = cell.getNumericCellValue(); //待完善
-                    value = sc_number.format(value);
-                } else if("0.00%".equals(cell.getCellStyle().getDataFormatString())){//百分比
-                    value = cell.getNumericCellValue(); //待完善
-                    value = df_per.format(value);
-                } else if("# ?/?".equals(cell.getCellStyle().getDataFormatString())){//分数
-                    value = cell.getNumericCellValue(); ////待完善
-                } else { //货币
-                    value = cell.getNumericCellValue();
-                    value = DecimalFormat.getCurrencyInstance().format(value);
-                }
+            case 2:
+                value = cell.getCellFormula();
                 break;
-            case BOOLEAN:
+            case 3:
+                value = cell.getStringCellValue();
+                break;
+            case 4:
                 value = cell.getBooleanCellValue();
                 break;
-            case BLANK:
-                //value = ",";
-                break;
             default:
-                value = cell.toString();
+                value = cell.getErrorCellValue();
         }
         return value;
     }

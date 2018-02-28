@@ -11,13 +11,13 @@ import java.util.function.Consumer;
 /**
  * @author by hongbf on 2018/2/26.
  */
-public class ExcelData {
+public class ExcelExportData {
     private List<String> headers;
     private String title;
     private Map<String,Object> map;
     private String sheetName;
     private List<Consumer<HSSFWorkbook>> styleFuncList;
-    public ExcelData() {
+    public ExcelExportData() {
         this.sheetName = "0";
         this.headers = new ArrayList<>();
         this.map = new HashMap<>();

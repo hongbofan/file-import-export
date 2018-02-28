@@ -1,10 +1,8 @@
 package com.flyread.file.export.excel;
 
+import com.flyread.file.export.base.BaseExportContext;
 import com.flyread.file.export.base.ExportHandler;
-import com.flyread.file.export.model.ExportRequest;
-import com.flyread.file.export.model.ExportResponse;
 
-import java.io.OutputStream;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,8 +17,9 @@ public class ExcelHeaderFilterHandler implements ExportHandler {
     }
 
     @Override
-    public void handleRequest(ExportRequest request, ExportResponse response, OutputStream out) throws Exception {
-        ExcelData meta = (ExcelData) request.getExportData();
+    public void handleRequest(BaseExportContext context) throws Exception {
+        ExcelExportContext c = (ExcelExportContext) context;
+        ExcelExportData meta = (ExcelExportData) c.getRequest().getExportData();
         meta.setHeaders(meta.getHeaders().stream().filter(h -> !filterHeaders.contains(h)).collect(Collectors.toList()));
     }
 }

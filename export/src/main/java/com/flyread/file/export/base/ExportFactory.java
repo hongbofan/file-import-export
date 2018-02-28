@@ -1,19 +1,24 @@
 package com.flyread.file.export.base;
 
+import com.flyread.file.export.excel.ExcelExportContext;
 import com.flyread.file.export.excel.ExcelExportServiceImpl;
-
-import java.io.File;
-
-import static com.flyread.file.export.base.ExportType.EXCEL;
+import com.flyread.file.export.excel.ExcelExportTranslate;
+import com.flyread.file.export.model.ExportRequest;
+import com.flyread.file.export.model.ExportResponse;
 
 /**
  * @author by hongbf on 2018/2/26.
  */
 public class ExportFactory {
-    public static ExportService create(ExportType type,ExportHandlerPipeline pipeline, File file,String prefix) {
+    public static ExportService create(ExportType type,ExportHandlerPipeline pipeline, ExportRequest request) {
         switch (type) {
-            case EXCEL: return new ExcelExportServiceImpl(pipeline,file,prefix);
-            default: return new ExcelExportServiceImpl(pipeline,file,prefix);
+            case EXCEL:
+                ExcelExportContext context = new ExcelExportContext();
+                context.setRequest(request);
+                context.setResponse(new ExportResponse());
+                context.setTranslate(new ExcelExportTranslate());
+                return new ExcelExportServiceImpl(pipeline,context);
+            default: return null;
         }
     }
 }

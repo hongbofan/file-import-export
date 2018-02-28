@@ -31,6 +31,7 @@ public class EachCommandExtend extends AbstractCommand {
 
     private String retainEmpty; //当集合大小为0时，是否最少保留一行空行数据
 
+
     public EachCommandExtend() {
     }
 

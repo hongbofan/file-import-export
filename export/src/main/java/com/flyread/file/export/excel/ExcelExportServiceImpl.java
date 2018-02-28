@@ -1,5 +1,6 @@
 package com.flyread.file.export.excel;
 
+import com.flyread.file.export.base.BaseExportContext;
 import com.flyread.file.export.base.ExportHandlerPipeline;
 import com.flyread.file.export.base.ExportService;
 import com.flyread.file.export.model.ExportRequest;
@@ -17,31 +18,28 @@ import java.util.Random;
  */
 public class ExcelExportServiceImpl implements ExportService {
     private ExportHandlerPipeline pipeline;
-    private final File output;
-    private final String prefix;
+    private final ExcelExportContext context;
 
-    public ExcelExportServiceImpl(File output, String prefix) {
-        this(new ExportHandlerPipeline().addLast(new DefaultExcelExportHandler(null,null)),output,prefix);
-    }
 
-    public ExcelExportServiceImpl(ExportHandlerPipeline pipeline, File output, String prefix) {
+    public ExcelExportServiceImpl(ExportHandlerPipeline pipeline,BaseExportContext context) {
+        this.context = (ExcelExportContext) context;
+        ((ExcelExportContext) context).addConfig(context.getRequest().getTemplateFile());
         this.pipeline = pipeline;
-        this.output = output;
-        this.prefix = prefix;
     }
 
     @Override
-    public ExportResponse export(ExportRequest request,ExportResponse response) {
-
-
+    public ExportResponse export() {
+        ExportRequest request = context.getRequest();
+        ExportResponse response = context.getResponse();
         String path = new SimpleDateFormat("yyyyMMdd").format(new Date())
-                + "/" + String.valueOf(Math.abs(new Random().nextLong())) + "/" + request.getFileName() + request.getFileType();
-        File output = new File(this.output, path);
+                + "/" + String.valueOf(Math.abs(new Random().nextLong())) + "/" + request.getOutputFileName() + request.getOutputFileSuffix();
+        File output = new File(request.getOutputPath(), path);
         if (output.getParentFile().mkdirs()) {
             try {
                 if (output.createNewFile()) {
                     FileOutputStream fos = new FileOutputStream(output);
-                    pipeline.handleRequest(request,response,fos);
+                    context.setOutputStream(fos);
+                    pipeline.handleRequest(context);
                     fos.flush();
                     fos.close();
                 }
@@ -51,7 +49,7 @@ public class ExcelExportServiceImpl implements ExportService {
             if (response == null) {
                 response = new ExportResponse();
             }
-            response.setPath(prefix + path);
+            response.setPath(request.getPrefix() + path);
             return response;
         }
         return null;

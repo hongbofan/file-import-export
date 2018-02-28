@@ -1,12 +1,9 @@
 package com.flyread.file.export.excel;
 
+import com.flyread.file.export.base.BaseExportContext;
 import com.flyread.file.export.base.ExportHandler;
-import com.flyread.file.export.excel.util.ExcelUtil;
 import com.flyread.file.export.excel.util.JxlsUtil;
 import com.flyread.file.export.model.ExportRequest;
-import com.flyread.file.export.model.ExportResponse;
-import org.apache.poi.hssf.usermodel.*;
-import org.apache.poi.ss.util.CellRangeAddress;
 import org.jxls.common.Context;
 import org.jxls.expression.JexlExpressionEvaluator;
 import org.jxls.transform.Transformer;
@@ -16,88 +13,42 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
-import static com.flyread.file.export.excel.util.ExcelUtil.objectToMap;
 
 /**
  * @author by hongbf on 2018/2/26.
  */
 public class DefaultExcelExportHandler implements ExportHandler {
-    private ExcelTranslate translate;
-    private final JxlsHelper helper;
-    private final Map<String, File> configMap;
-
-    public DefaultExcelExportHandler(JxlsHelper helper, Map<String, File> configMap) {
-        this.helper = helper;
-        this.configMap = configMap;
-    }
-
-    public DefaultExcelExportHandler(File config) {
-        this.translate = new ExcelTranslate();
-        helper = JxlsHelper.getInstance();
-        configMap = new ConcurrentHashMap<>();
-        addConfig(config);
-    }
-    private void addConfig(File config) {
-        if (config == null) {
-            return;
-        }
-        if (config.isDirectory()) {
-            File[] files = config.listFiles();
-            if (files != null) {
-                for (File con : files) {
-                    addConfig(con);
-                }
-            }
-        } else {
-            if (config.getName().toLowerCase().endsWith(".xls")) {
-                String name = config.getName().substring(0, config.getName().length() - 4);
-                if (configMap.containsKey(name)) {
-                    throw new RuntimeException("重复的注册类型:"
-                            + name + ",已注册文件:" + configMap.get(name).getAbsolutePath()
-                            + ",当前文件:" + config.getAbsolutePath());
-                } else {
-                    configMap.put(name, config);
-                }
-            }
-        }
-    }
-
-    private File getConfig(String typeName) {
-        return configMap.get(typeName);
-    }
-
 
     @Override
-    public void handleRequest(ExportRequest request, ExportResponse response, OutputStream out) throws Exception {
-        File template = getConfig(request.getExportTemplate());
+    public void handleRequest(BaseExportContext context) throws Exception {
+        ExcelExportContext c = (ExcelExportContext) context;
+        ExportRequest request = c.getRequest();
+
+        File template = c.getConfig(request.getTemplateFile().getName());
         if (template == null) {
-            this.export(request, out);
+            this.export(request, c.getOutputStream());
         } else {
-            this.exportByJxls(request, out,template);
+            this.exportByJxls(request, c.getOutputStream(),template,c.getJxlsHelper());
         }
     }
-    private void exportByJxls(ExportRequest request,OutputStream out,File input) throws Exception{
+    private void exportByJxls(ExportRequest request,OutputStream out,File input,JxlsHelper helper) throws Exception{
         if (input == null) {
-            throw new NullPointerException("错误的配置类型:" + request.getExportTemplate());
+            throw new NullPointerException("错误的配置类型:" + request.getOutputFileName());
         }
 
         InputStream fis = new FileInputStream(input);
 
         Context context = new Context();
-        ExcelData data = (ExcelData) request.getExportData();
+        ExcelExportData data = (ExcelExportData) request.getExportData();
         Map<String,Object> model = data.getMap();
         if (model != null) {
             for (String key : model.keySet()) {
                 context.putVar(key, model.get(key));
             }
         }
-        Transformer transformer  = helper.createTransformer(fis, out);
+        Transformer transformer  = helper.createTransformer(fis,out);
         JexlExpressionEvaluator evaluator = (JexlExpressionEvaluator)transformer.getTransformationConfig().getExpressionEvaluator();
         Map<String, Object> funcs = new HashMap<>();
         funcs.put("jx", new JxlsUtil());

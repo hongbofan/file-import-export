@@ -17,9 +17,9 @@ public class ExportHandlerPipeline implements ExportHandler {
         return this;
     }
     @Override
-    public void handleRequest(ExportRequest request, ExportResponse response, OutputStream out) throws Exception{
+    public void handleRequest(BaseExportContext context) throws Exception{
         for (ExportHandler h : handlers) {
-            h.handleRequest(request,response,out);
+            h.handleRequest(context);
         }
     }
 }

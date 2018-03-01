@@ -21,12 +21,16 @@ public class ImportServer {
     public static void main(String[] args) {
         File file = new File("C:\\Users\\DELL\\Desktop\\新建文件夹\\template.xls");
         ImportRequest request = new ImportRequest(file);
+        request.setSelectSheet(-1);
+        request.setStartRowNum(0);
         BaseImportContext context = new ExcelImportContext();
         context.setRequest(request);
         context.setResponse(new ImportResponse());
         Map<ExcelCellType,Format> map = new HashMap<>();
         map.put(ExcelCellType.CELL_TYPE_NUMERIC, DecimalFormat.getPercentInstance());
-        System.out.println(new ExcelImportServiceImpl(context,new ImportHandlerPipeline().addLast(new DefaultExcelImportHandler(new ExcelImportTranslate(map)))).imp0rt().getImportCount());
+        System.out.println(new ExcelImportServiceImpl(context,new ImportHandlerPipeline()
+                                                                .addLast(new ExcelImportListHandler())
+                                                                .addLast(new DefaultExcelImportHandler(new ExcelImportTranslate(map)))).imp0rt().getData());
     }
 
 }

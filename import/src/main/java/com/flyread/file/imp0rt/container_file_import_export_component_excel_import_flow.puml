@@ -1,0 +1,16 @@
+@startuml
+start
+:调用service.importFile方法;
+-> 传入context、pipeline;
+:按顺序执行pipeline的所有handler.handlerRequset;
+:执行若干handler;
+floating note left:解析importRequest
+:ExcelImportListHandler(或者其他集合的处理器);
+floating note left:context设置迭代器(iterator)
+:执行若干handler;
+floating note left:处理importResponse
+:DefaultExcelImportHandler;
+floating note left:迭代并格式化数据存入importResponse
+:返回importResponse;
+end
+@enduml

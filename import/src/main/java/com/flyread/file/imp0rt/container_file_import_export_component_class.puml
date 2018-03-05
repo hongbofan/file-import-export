@@ -1,0 +1,59 @@
+@startuml
+abstract class BaseImportContext {
+    ImportRequest request
+    ImportResponse response
+    Iterator iterator
+}
+class ExcelImportContext extends BaseImportContext {
+}
+interface ImportHandler {
+    void handleRequest(BaseImportContext context) throws Exception
+}
+interface ImportService {
+    ImportResponse importFile()
+}
+interface ImportTranslate {
+    Object translate(Object o)
+}
+class ExcelImportTranslate implements ImportTranslate {
+    Map<ExcelCellType,Format> formatMap
+}
+class ImportHandlerPipeline implements ImportHandler {
+    List<ImportHandler> handlers
+    ImportHandlerPipeline addLast(ImportHandler handler)
+}
+class ExcelImportListHandler implements ImportHandler {
+}
+class DefaultExcelImportHandler implements ImportHandler {
+    ExcelImportTranslate translate
+}
+class ExcelImportServiceImpl implements ImportService {
+    ImportHandlerPipeline pipeline
+    ExcelImportContext context
+}
+enum ExcelCellType {
+    CELL_TYPE_NUMERIC
+    CELL_TYPE_STRING
+    CELL_TYPE_FORMULA
+    CELL_TYPE_BLANK
+    CELL_TYPE_BOOLEAN
+    CELL_TYPE_ERROR
+    ExcelCellType getStatusByCode(String code)
+}
+class ImportResponse {
+    int importCount
+    Object data
+}
+class ImportRequest {
+    File importFile
+    int selectSheet
+    int startRowNum
+}
+ExcelImportServiceImpl <-- ExcelImportContext
+ExcelImportServiceImpl <-- ImportHandlerPipeline
+DefaultExcelImportHandler <-- ExcelImportTranslate
+ExcelImportTranslate <-- ExcelCellType
+BaseImportContext <-- ImportResponse
+BaseImportContext <-- ImportRequest
+
+@enduml

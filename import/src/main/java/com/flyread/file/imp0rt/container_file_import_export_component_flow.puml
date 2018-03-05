@@ -1,0 +1,15 @@
+@startuml
+start
+:导出;
+:初始化context和pipeline;
+if(pipeline.size()) then (>0)
+while(handler不为空)
+:执行handlerRequest;
+  -> 根据importRequest和context生成或修改importResponse;
+:下一个handler;
+endwhile
+else
+endif
+:返回importResponse;
+end
+@enduml

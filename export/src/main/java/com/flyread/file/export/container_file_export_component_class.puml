@@ -1,0 +1,60 @@
+@startuml
+abstract class BaseExportContext {
+    ExportRequest request
+    ExportResponse response
+    OutputStream outputStream
+}
+class ExportRequest {
+    String outputFileName
+    String outputFileSuffix
+    String outputPath
+    String prefix
+    File templateFile
+    Object exportData
+}
+class ExportResponse {
+    String path
+}
+class ExcelExportContext extends BaseExportContext {
+}
+interface ExportHandler {
+    void handleRequest(BaseExportContext context) throws Exception
+}
+class ExportHandlerPipeline implements ExportHandler {
+    List<ExportHandler> handlers
+    ExportHandlerPipeline addLast(ExportHandler handler)
+}
+class DefaultExcelExportHandler implements ExportHandler {
+    void exportByJxls(ExportRequest request,OutputStream out,File input,JxlsHelper helper) throws Exception
+}
+interface ExportService {
+    ExportResponse export()
+}
+class ExcelExportServiceImpl implements ExportService {
+    ExportHandlerPipeline pipeline
+    ExcelExportContext context
+}
+class ExportFactory {
+    ExportService create(ExportType type,ExportHandlerPipeline pipeline, ExportRequest request)
+}
+enum ExportType {
+    EXCEL
+    ExportType getStatusByCode(String code)
+}
+class ExportBootstrap {
+    ExportRequest request
+    ExportHandlerPipeline pipeline
+    ExportService build(ExportType type)
+    ExportBootstrap initRequest(String outputFileName,String outputFileSuffix,String outputPath,String prefix,File templateFile,Object data)
+    ExportBootstrap initPipeline()
+    ExportBootstrap initPipeline(List<ExportHandler> handlers,boolean useCustomExportHandler)
+}
+BaseExportContext <-- ExportResponse
+BaseExportContext <-- ExportRequest
+ExportFactory <-- ExportType
+ExcelExportServiceImpl <-- ExportHandlerPipeline
+ExcelExportServiceImpl <-- ExcelExportContext
+ExportBootstrap <-- ExportRequest
+ExportBootstrap <-- ExportHandlerPipeline
+ExportBootstrap <-- ExportFactory
+@enduml

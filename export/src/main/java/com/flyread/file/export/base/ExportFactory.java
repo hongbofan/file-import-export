@@ -2,7 +2,6 @@ package com.flyread.file.export.base;
 
 import com.flyread.file.export.excel.ExcelExportContext;
 import com.flyread.file.export.excel.ExcelExportServiceImpl;
-import com.flyread.file.export.excel.ExcelExportTranslate;
 import com.flyread.file.export.model.ExportRequest;
 import com.flyread.file.export.model.ExportResponse;
 
@@ -16,7 +15,6 @@ public class ExportFactory {
                 ExcelExportContext context = new ExcelExportContext();
                 context.setRequest(request);
                 context.setResponse(new ExportResponse());
-                context.setTranslate(new ExcelExportTranslate());
                 return new ExcelExportServiceImpl(pipeline,context);
             default: return null;
         }

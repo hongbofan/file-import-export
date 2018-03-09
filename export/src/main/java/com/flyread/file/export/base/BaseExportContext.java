@@ -14,7 +14,6 @@ public abstract class BaseExportContext {
     private ExportRequest request;
     private ExportResponse response;
     private OutputStream outputStream;
-    private ExportTranslate translate;
 
 
     public ExportRequest getRequest() {
@@ -39,14 +38,6 @@ public abstract class BaseExportContext {
 
     public void setOutputStream(OutputStream outputStream) {
         this.outputStream = outputStream;
-    }
-
-    public ExportTranslate getTranslate() {
-        return translate;
-    }
-
-    public void setTranslate(ExportTranslate translate) {
-        this.translate = translate;
     }
 
 }

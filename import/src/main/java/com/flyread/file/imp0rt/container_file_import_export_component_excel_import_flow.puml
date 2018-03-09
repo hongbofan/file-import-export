@@ -2,7 +2,7 @@
 start
 :调用service.importFile方法;
 -> 传入context、pipeline;
-:按顺序执行pipeline的所有handler.handlerRequset;
+:按顺序执行pipeline的所有handler.handlerRequest;
 :执行若干handler;
 floating note left:解析importRequest
 :ExcelImportListHandler(或者其他集合的处理器);

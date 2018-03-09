@@ -1,5 +1,7 @@
 package com.flyread.file.export.excel.util;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import org.jxls.area.Area;
 import org.jxls.command.AbstractCommand;
 import org.jxls.command.CellRefGenerator;
@@ -12,8 +14,19 @@ import org.jxls.common.Size;
 import org.jxls.expression.JexlExpressionEvaluator;
 import org.jxls.util.Util;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static com.sun.org.apache.xalan.internal.lib.ExsltStrings.split;
+
 
 /**
  * @author by hongbf on 2018/2/27.
@@ -28,9 +41,7 @@ public class EachCommandExtend extends AbstractCommand {
     private Direction direction = Direction.DOWN;
     private CellRefGenerator cellRefGenerator;
     private String multisheet;
-
-    private String retainEmpty; //当集合大小为0时，是否最少保留一行空行数据
-
+    private Map<String,String[]> filterHeader;
 
     public EachCommandExtend() {
     }
@@ -192,6 +203,8 @@ public class EachCommandExtend extends AbstractCommand {
 
     @Override
     public Size applyAt(CellRef cellRef, Context context) {
+        System.out.println("eachExtend");
+        Gson gson = new Gson();
         Collection itemsCollection = Util.transformToCollectionObject(getTransformationConfig().getExpressionEvaluator(), items, context);
         int width = 0;
         int height = 0;
@@ -207,6 +220,22 @@ public class EachCommandExtend extends AbstractCommand {
             selectEvaluator = new JexlExpressionEvaluator(select);
         }
         for (Object obj : itemsCollection) {
+            if (filterHeader != null && filterHeader.size() > 0) {
+                Class<?> cls = obj.getClass();
+                filterHeader.forEach((k,v) -> {
+                    try {
+                        Field f = cls.getDeclaredField(k);
+                        f.setAccessible(true);
+                        Object val = f.get(obj);
+                        String s = String.valueOf(val);
+                        f.set(obj,s.replaceAll(v[1],v[2]));
+                    } catch (Exception e) {
+                        throw new JxlsException("reflect error!" , e);
+                    }
+                });
+
+            }
+
             context.putVar(var, obj);
             context.putVar(var+"_index", index);
             if (selectEvaluator != null && !Util.isConditionTrue(selectEvaluator, context)) {
@@ -234,9 +263,6 @@ public class EachCommandExtend extends AbstractCommand {
             context.removeVar(var);
             context.removeVar(var+"_index");
         }
-        if("true".equalsIgnoreCase(retainEmpty) && width == 0 && height == 0){
-            return area.applyAt(currentCell, context);
-        }
         return new Size(width, height);
     }
 
@@ -248,12 +274,19 @@ public class EachCommandExtend extends AbstractCommand {
         }
     }
 
-    public String getRetainEmpty() {
-        return retainEmpty;
+    public Map<String, String[]> getFilterHeader() {
+        return filterHeader;
     }
 
-    public void setRetainEmpty(String retainEmpty) {
-        this.retainEmpty = retainEmpty;
+    public void setFilterHeader(String filterHeader) {
+        String[] filters = filterHeader.split(",");
+        this.filterHeader = new HashMap<>(filters.length);
+        for (String filter : filters) {
+            String[] ss = filter.split("::");
+            if (ss.length != 3) {
+                throw new JxlsException("filter must be #{header}::#{pattern}::#{replaceValue}");
+            }
+            this.filterHeader.put(ss[0],ss);
+        }
     }
-
 }

@@ -1,0 +1,15 @@
+@startuml
+start
+:导出;
+:初始化exportRequest和pipeline;
+if(pipeline.size()) then (>0)
+while(handler不为空)
+:执行handlerRequest;
+  -> 根据exportRequest和context生成或修改exportResponse;
+:下一个handler;
+endwhile
+else
+endif
+:返回exportResponse;
+end
+@enduml

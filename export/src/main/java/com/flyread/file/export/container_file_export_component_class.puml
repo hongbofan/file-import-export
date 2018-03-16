@@ -3,6 +3,7 @@ abstract class BaseExportContext {
     ExportRequest request
     ExportResponse response
     OutputStream outputStream
+    ExportHandlerPipeline pipeline
 }
 class ExportRequest {
     String outputFileName
@@ -31,7 +32,6 @@ interface ExportService {
     ExportResponse export()
 }
 class ExcelExportServiceImpl implements ExportService {
-    ExportHandlerPipeline pipeline
     ExcelExportContext context
 }
 class ExportFactory {
@@ -51,8 +51,8 @@ class ExportBootstrap {
 }
 BaseExportContext <-- ExportResponse
 BaseExportContext <-- ExportRequest
+BaseExportContext <-- ExportHandlerPipeline
 ExportFactory <-- ExportType
-ExcelExportServiceImpl <-- ExportHandlerPipeline
 ExcelExportServiceImpl <-- ExcelExportContext
 ExportBootstrap <-- ExportRequest
 ExportBootstrap <-- ExportHandlerPipeline

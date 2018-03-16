@@ -21,11 +21,15 @@ import org.jxls.transform.poi.PoiTransformer;
  * @author by hongbf on 2018/2/27.
  *//*
 
+
 public class MergeCommand extends AbstractCommand {
-    private String cols;    //合并的列数
-    private String rows;    //合并的行数
+    //合并的列数
+    private String cols;
+    //合并的行数
+    private String rows;
     private Area area;
-    private CellStyle cellStyle;    //第一个单元格的样式
+    //第一个单元格的样式
+    private CellStyle cellStyle;
 
     @Override
     public String getName() {
@@ -133,4 +137,5 @@ public class MergeCommand extends AbstractCommand {
     public void setRows(String rows) {
         this.rows = rows;
     }
-}*/
+}
+*/

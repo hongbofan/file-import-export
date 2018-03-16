@@ -3,6 +3,7 @@ abstract class BaseImportContext {
     ImportRequest request
     ImportResponse response
     Iterator iterator
+    ImportHandlerPipeline pipeline
 }
 class ExcelImportContext extends BaseImportContext {
 }
@@ -25,10 +26,8 @@ class ImportHandlerPipeline implements ImportHandler {
 class ExcelImportListHandler implements ImportHandler {
 }
 class DefaultExcelImportHandler implements ImportHandler {
-    ExcelImportTranslate translate
 }
 class ExcelImportServiceImpl implements ImportService {
-    ImportHandlerPipeline pipeline
     ExcelImportContext context
 }
 enum ExcelCellType {
@@ -38,7 +37,6 @@ enum ExcelCellType {
     CELL_TYPE_BLANK
     CELL_TYPE_BOOLEAN
     CELL_TYPE_ERROR
-    ExcelCellType getStatusByCode(String code)
 }
 class ImportResponse {
     int importCount
@@ -48,12 +46,33 @@ class ImportRequest {
     File importFile
     int selectSheet
     int startRowNum
+    ImportTranslate translate
+}
+class ImportFactory {
+    ImportService create(ImportType type,ImportHandlerPipeline pipeline, ImportRequest request)
+}
+enum ImportType {
+    EXCEL
+}
+class ImportBootstrap {
+    ImportRequest request
+    ImportHandlerPipeline pipeline
+    ImportService build(ImportType type)
+    ImportBootstrap initRequest(File importFile)
+    ImportBootstrap initRequest(File importFile,int selectSheet)
+    ImportBootstrap initRequest(File importFile,ImportTranslate translate)
+    ImportBootstrap initRequest(File importFile, int selectSheet, int startRowNum, ImportTranslate translate)
+    ImportBootstrap initPipeline()
+    ImportBootstrap initPipeline(List<ImportHandler> handlers, boolean useCustomExportHandler)
 }
 ExcelImportServiceImpl <-- ExcelImportContext
-ExcelImportServiceImpl <-- ImportHandlerPipeline
-DefaultExcelImportHandler <-- ExcelImportTranslate
 ExcelImportTranslate <-- ExcelCellType
 BaseImportContext <-- ImportResponse
 BaseImportContext <-- ImportRequest
-
+BaseImportContext <-- ImportHandlerPipeline
+ImportRequest <-- ExcelImportTranslate
+ImportFactory <-- ImportType
+ImportBootstrap <-- ImportFactory
+ImportBootstrap <-- ImportRequest
+ImportBootstrap <-- ImportHandlerPipeline
 @enduml

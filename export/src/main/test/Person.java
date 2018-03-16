@@ -1,5 +1,3 @@
-package com.flyread.file.export.netty;
-
 import java.util.Date;
 
 /**

@@ -1,4 +1,10 @@
-import java.util.regex.Pattern;
+import com.flyread.file.export.ExportBootstrap;
+import com.flyread.file.export.base.ExportType;
+import com.flyread.file.export.excel.ExcelExportData;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Date;
 
 
 /**
@@ -6,11 +12,13 @@ import java.util.regex.Pattern;
  */
 public class Test {
     public static void main(String[] args) {
-        String filterHeader = "";
-
-        String header = filterHeader.split("::")[0];
-        Pattern pattern = Pattern.compile(filterHeader.split("::")[1]);
-        String s = "1sss";
-        System.out.println(s.replaceAll(pattern.pattern(),filterHeader.split("::")[2]));
+        ExcelExportData meta = new ExcelExportData();
+        meta.getMap().put("list",new ArrayList<Person>(){{add(new Person("1","1","1",new Date(),19));}});
+        System.out.println(new ExportBootstrap()
+                .initRequest("1234",".xls","C:\\Users\\DELL\\Desktop\\新建文件夹","/download/",new File("C:\\Users\\DELL\\Desktop\\新建文件夹\\template.xls"),meta)
+                .initPipeline()
+                .build(ExportType.EXCEL)
+                .exportFile()
+                .getPath());
     }
 }

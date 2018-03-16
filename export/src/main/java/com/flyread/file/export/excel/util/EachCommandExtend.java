@@ -204,7 +204,6 @@ public class EachCommandExtend extends AbstractCommand {
     @Override
     public Size applyAt(CellRef cellRef, Context context) {
         System.out.println("eachExtend");
-        Gson gson = new Gson();
         Collection itemsCollection = Util.transformToCollectionObject(getTransformationConfig().getExpressionEvaluator(), items, context);
         int width = 0;
         int height = 0;

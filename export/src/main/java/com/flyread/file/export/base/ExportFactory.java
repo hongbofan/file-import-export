@@ -15,7 +15,8 @@ public class ExportFactory {
                 ExcelExportContext context = new ExcelExportContext();
                 context.setRequest(request);
                 context.setResponse(new ExportResponse());
-                return new ExcelExportServiceImpl(pipeline,context);
+                context.setPipeline(pipeline);
+                return new ExcelExportServiceImpl(context);
             default: return null;
         }
     }

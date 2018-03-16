@@ -1,5 +1,7 @@
 package com.flyread.file.imp0rt.model;
 
+import com.flyread.file.imp0rt.base.ImportTranslate;
+
 import java.io.File;
 
 /**
@@ -12,6 +14,8 @@ public class ImportRequest {
     private int selectSheet;
 
     private int startRowNum;
+
+    private ImportTranslate translate;
 
     public ImportRequest(File importFile) {
         this.importFile = importFile;
@@ -40,5 +44,13 @@ public class ImportRequest {
 
     public void setStartRowNum(int startRowNum) {
         this.startRowNum = startRowNum;
+    }
+
+    public ImportTranslate getTranslate() {
+        return translate;
+    }
+
+    public void setTranslate(ImportTranslate translate) {
+        this.translate = translate;
     }
 }

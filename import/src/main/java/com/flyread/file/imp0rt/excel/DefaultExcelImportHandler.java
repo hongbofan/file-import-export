@@ -2,6 +2,7 @@ package com.flyread.file.imp0rt.excel;
 
 import com.flyread.file.imp0rt.base.BaseImportContext;
 import com.flyread.file.imp0rt.base.ImportHandler;
+import com.flyread.file.imp0rt.base.ImportTranslate;
 import com.flyread.file.imp0rt.model.ImportRecord;
 import com.flyread.file.imp0rt.model.ImportResponse;
 import org.apache.poi.ss.usermodel.*;
@@ -19,15 +20,10 @@ import static com.flyread.file.imp0rt.util.ImportUtil.getCellValue;
  */
 public class DefaultExcelImportHandler implements ImportHandler {
 
-    private ExcelImportTranslate translate;
-
-    public DefaultExcelImportHandler(ExcelImportTranslate translate) {
-        this.translate = translate;
-    }
-
     @Override
     public void handleRequest(BaseImportContext context) throws Exception {
         ImportResponse response = context.getResponse();
+        ImportTranslate translate = context.getRequest().getTranslate();
         Iterator iterator = context.getIterator();
         List<List<Object>> list = new LinkedList<>();
         while (iterator.hasNext()) {
@@ -40,11 +36,16 @@ public class DefaultExcelImportHandler implements ImportHandler {
                 if (cell == null) {
                     continue;
                 }
-                value = translate.translate(cell);
+                if (translate != null) {
+                    value = translate.translate(cell);
+                } else {
+                    value = getCellValue(cell);
+                }
+
                 linked.add(value);
             }
-            ImportRecord record = new ImportRecord();
-            record.setList(linked);
+/*            ImportRecord record = new ImportRecord();
+            record.setList(linked);*/
             list.add(linked);
         }
         response.setImportCount(list.size());

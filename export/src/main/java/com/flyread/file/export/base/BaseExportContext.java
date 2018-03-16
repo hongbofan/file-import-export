@@ -11,9 +11,20 @@ import java.util.Map;
  * @author by hongbf on 2018/2/28.
  */
 public abstract class BaseExportContext {
+    /**
+     *  导出请求
+     */
     private ExportRequest request;
+    /**
+     *  导出返回
+     */
     private ExportResponse response;
+    /**
+     *  输出流
+     */
     private OutputStream outputStream;
+
+    private ExportHandlerPipeline pipeline;
 
 
     public ExportRequest getRequest() {
@@ -40,4 +51,11 @@ public abstract class BaseExportContext {
         this.outputStream = outputStream;
     }
 
+    public ExportHandlerPipeline getPipeline() {
+        return pipeline;
+    }
+
+    public void setPipeline(ExportHandlerPipeline pipeline) {
+        this.pipeline = pipeline;
+    }
 }

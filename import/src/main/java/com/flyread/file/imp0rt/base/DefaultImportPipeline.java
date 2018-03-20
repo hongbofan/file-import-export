@@ -1,7 +1,6 @@
 package com.flyread.file.imp0rt.base;
 
 
-import io.netty.channel.ChannelHandler;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -29,7 +28,7 @@ public class DefaultImportPipeline implements ImportPipeline{
         return this;
     }
 
-    @Override
+/*    @Override
     public ImportPipeline addLast(String name, ImportHandler handler) {
         return null;
     }
@@ -42,7 +41,7 @@ public class DefaultImportPipeline implements ImportPipeline{
     @Override
     public ImportPipeline addAfter(String baseName, String name, ImportHandler handler) {
         return null;
-    }
+    }*/
 
     @Override
     public ImportPipeline addFirst(ImportHandler... handlers) {
@@ -67,7 +66,7 @@ public class DefaultImportPipeline implements ImportPipeline{
         return this;
     }
 
-    @Override
+/*    @Override
     public ImportPipeline addLast(ImportHandler... handlers) {
         return null;
     }
@@ -81,7 +80,7 @@ public class DefaultImportPipeline implements ImportPipeline{
     public ImportHandler remove(String name) {
         return null;
     }
-
+*/
     @Override
     public Map<String, ImportHandler> toMap() {
         Map<String, ImportHandler> map = new LinkedHashMap<>();
@@ -120,7 +119,7 @@ public class DefaultImportPipeline implements ImportPipeline{
         }
 
         @Override
-        public void handleRequest(BaseImportContext context) throws Exception {
+        public void handleRequest(BaseImportHandlerContext context,Object msg) throws Exception {
 
         }
     }
@@ -130,13 +129,20 @@ public class DefaultImportPipeline implements ImportPipeline{
         }
 
         @Override
-        public void handleRequest(BaseImportContext context) throws Exception {
-
+        public void handleRequest(BaseImportHandlerContext context,Object msg) throws Exception {
         }
 
         @Override
         public ImportHandler handler() {
             return this;
         }
+    }
+
+    public BaseImportHandlerContext getHead() {
+        return head;
+    }
+
+    public BaseImportHandlerContext getTail() {
+        return tail;
     }
 }

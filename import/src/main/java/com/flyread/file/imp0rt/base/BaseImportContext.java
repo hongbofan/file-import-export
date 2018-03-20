@@ -13,7 +13,6 @@ public abstract class BaseImportContext {
     private ImportRequest request;
     private ImportResponse response;
     private Iterator iterator;
-    private ImportHandlerPipeline pipeline;
 
     private ImportPipeline importPipeline;
 
@@ -39,14 +38,6 @@ public abstract class BaseImportContext {
 
     public void setIterator(Iterator iterator) {
         this.iterator = iterator;
-    }
-
-    public ImportHandlerPipeline getPipeline() {
-        return pipeline;
-    }
-
-    public void setPipeline(ImportHandlerPipeline pipeline) {
-        this.pipeline = pipeline;
     }
 
     public ImportPipeline getImportPipeline() {

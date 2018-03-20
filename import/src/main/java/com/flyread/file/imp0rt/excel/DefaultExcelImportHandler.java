@@ -1,6 +1,7 @@
 package com.flyread.file.imp0rt.excel;
 
 import com.flyread.file.imp0rt.base.BaseImportContext;
+import com.flyread.file.imp0rt.base.BaseImportHandlerContext;
 import com.flyread.file.imp0rt.base.ImportHandler;
 import com.flyread.file.imp0rt.base.ImportTranslate;
 import com.flyread.file.imp0rt.model.ImportRecord;
@@ -21,7 +22,7 @@ import static com.flyread.file.imp0rt.util.ImportUtil.getCellValue;
 public class DefaultExcelImportHandler implements ImportHandler {
 
     @Override
-    public void handleRequest(BaseImportContext context) throws Exception {
+    public void handleRequest(BaseImportHandlerContext context1,BaseImportContext context) throws Exception {
         ImportResponse response = context.getResponse();
         ImportTranslate translate = context.getRequest().getTranslate();
         Iterator iterator = context.getIterator();

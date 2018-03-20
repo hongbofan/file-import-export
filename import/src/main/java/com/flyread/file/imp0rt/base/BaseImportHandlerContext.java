@@ -1,10 +1,12 @@
 package com.flyread.file.imp0rt.base;
 
 
+import static javafx.scene.input.KeyCode.O;
+
 /**
  * @author by hongbf on 2018/3/16.
  */
-abstract class BaseImportHandlerContext implements ImportHandlerContext {
+public abstract class BaseImportHandlerContext implements ImportHandlerContext {
     volatile BaseImportHandlerContext next;
     volatile BaseImportHandlerContext prev;
     private final DefaultImportPipeline pipeline;
@@ -16,10 +18,18 @@ abstract class BaseImportHandlerContext implements ImportHandlerContext {
     }
 
     @Override
-    public void write() {
-
+    public BaseImportHandlerContext fireChannelRead(Object msg) {
+        if (msg == null) {
+            throw new NullPointerException("msg");
+        }
+        final BaseImportHandlerContext next = findContextInbound();
+        try {
+            next.handler().handleRequest(next,msg);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return this;
     }
-
     @Override
     public ImportPipeline pipeline() {
         return pipeline;
@@ -27,5 +37,11 @@ abstract class BaseImportHandlerContext implements ImportHandlerContext {
 
     public String getName() {
         return name;
+    }
+
+    private BaseImportHandlerContext findContextInbound() {
+        BaseImportHandlerContext ctx = this;
+        ctx = ctx.next;
+        return ctx;
     }
 }

@@ -9,5 +9,5 @@ public interface ImportHandler {
      * @param context Import上下文
      * @throws Exception
      */
-    void handleRequest(BaseImportContext context) throws Exception;
+    void handleRequest(BaseImportHandlerContext context,Object msg) throws Exception;
 }

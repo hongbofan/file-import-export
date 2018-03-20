@@ -9,5 +9,5 @@ import io.netty.channel.ChannelPipeline;
 public interface ImportHandlerContext {
     ImportHandler handler();
     ImportPipeline pipeline();
-    void write();
+    BaseImportHandlerContext fireChannelRead(Object msg);
 }

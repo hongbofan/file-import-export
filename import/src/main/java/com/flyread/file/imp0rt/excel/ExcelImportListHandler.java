@@ -1,6 +1,7 @@
 package com.flyread.file.imp0rt.excel;
 
 import com.flyread.file.imp0rt.base.BaseImportContext;
+import com.flyread.file.imp0rt.base.BaseImportHandlerContext;
 import com.flyread.file.imp0rt.base.ImportHandler;
 import com.flyread.file.imp0rt.model.ImportRequest;
 import org.apache.poi.ss.usermodel.Row;
@@ -20,7 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class ExcelImportListHandler implements ImportHandler {
     @Override
-    public void handleRequest(BaseImportContext context) throws Exception {
+    public void handleRequest(BaseImportHandlerContext context1,BaseImportContext context) throws Exception {
         ImportRequest request = context.getRequest();
         File file = request.getImportFile();
         int selectSheet = request.getSelectSheet();

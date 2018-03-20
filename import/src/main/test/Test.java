@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public class Test {
     public static void main(String[] args) {
-
+        test2();
     }
 
     public static void test1() {
@@ -28,8 +28,8 @@ public class Test {
     }
     public static void test2() {
         DefaultImportPipeline pipeline = new DefaultImportPipeline();
-        pipeline.addFirst(new DecoderHandler());
         pipeline.addFirst(new ReadLineHandler());
+        pipeline.addFirst(new DecoderHandler());
 
         ImportRequest request = new ImportRequest(new File("C:\\Users\\DELL\\Desktop\\新建文件夹\\template.xls"));
         request.setSelectSheet(0);

@@ -5,7 +5,8 @@ package com.flyread.file.imp0rt.base;
  */
 public class ReadLineHandler implements ImportHandler {
     @Override
-    public void handleRequest(BaseImportContext context) throws Exception {
+    public void handleRequest(BaseImportHandlerContext context,Object msg) throws Exception {
         System.out.println("readline");
+
     }
 }

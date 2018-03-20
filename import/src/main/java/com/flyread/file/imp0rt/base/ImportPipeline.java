@@ -12,12 +12,12 @@ import java.util.Map;
  */
 public interface ImportPipeline extends Iterable<Map.Entry<String, ImportHandler>>{
     ImportPipeline addFirst(String name, ImportHandler handler);
-    ImportPipeline addLast(String name, ImportHandler handler);
+/*    ImportPipeline addLast(String name, ImportHandler handler);
     ImportPipeline addBefore(String baseName, String name, ImportHandler handler);
-    ImportPipeline addAfter(String baseName, String name, ImportHandler handler);
+    ImportPipeline addAfter(String baseName, String name, ImportHandler handler);*/
     ImportPipeline addFirst(ImportHandler... handlers);
-    ImportPipeline addLast(ImportHandler... handlers);
+/*    ImportPipeline addLast(ImportHandler... handlers);
     ImportPipeline remove(ImportHandler handler);
-    ImportHandler remove(String name);
+    ImportHandler remove(String name);*/
     Map<String, ImportHandler> toMap();
 }

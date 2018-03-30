@@ -9,7 +9,7 @@ import com.flyread.file.imp0rt.model.ImportResponse;
  * @author by hongbf on 2018/3/14.
  */
 public class ImportFactory {
-    public static ImportService create(ImportType type, ImportHandlerPipeline pipeline, ImportRequest request) {
+/*    public static ImportService create(ImportType type, ImportHandlerPipeline pipeline, ImportRequest request) {
         switch (type) {
             case EXCEL:
                 ExcelImportContext context = new ExcelImportContext();
@@ -19,5 +19,5 @@ public class ImportFactory {
                 return new ExcelImportServiceImpl(context);
             default: return null;
         }
-    }
+    }*/
 }

@@ -1,7 +1,7 @@
 package com.flyread.file.imp0rt;
 
 import com.flyread.file.imp0rt.base.*;
-import com.flyread.file.imp0rt.excel.DefaultExcelImportHandler;
+
 import com.flyread.file.imp0rt.excel.ExcelImportTranslate;
 import com.flyread.file.imp0rt.model.ImportRequest;
 import com.flyread.file.imp0rt.model.ImportResponse;
@@ -17,7 +17,7 @@ import static javafx.scene.input.KeyCode.M;
  * @author by hongbf on 2018/3/14.
  */
 public class ImportBootstrap {
-    private ImportRequest request;
+/*    private ImportRequest request;
     private ImportHandlerPipeline pipeline;
     public ImportService build(ImportType type) {
         return ImportFactory.create(type,pipeline,request);
@@ -52,5 +52,5 @@ public class ImportBootstrap {
             pipeline.addLast(new DefaultExcelImportHandler());
         }
         return this;
-    }
+    }*/
 }

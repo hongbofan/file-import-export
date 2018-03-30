@@ -1,3 +1,4 @@
+/*
 package com.flyread.file.imp0rt.excel;
 
 import com.flyread.file.imp0rt.base.BaseImportContext;
@@ -16,9 +17,11 @@ import java.util.List;
 
 import static com.flyread.file.imp0rt.util.ImportUtil.getCellValue;
 
+*/
 /**
  * @author by hongbf on 2018/2/28.
- */
+ *//*
+
 public class DefaultExcelImportHandler implements ImportHandler {
 
     @Override
@@ -45,11 +48,14 @@ public class DefaultExcelImportHandler implements ImportHandler {
 
                 linked.add(value);
             }
+*/
 /*            ImportRecord record = new ImportRecord();
-            record.setList(linked);*/
+            record.setList(linked);*//*
+
             list.add(linked);
         }
         response.setImportCount(list.size());
         response.setData(list);
     }
 }
+*/

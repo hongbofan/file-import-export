@@ -4,22 +4,31 @@ package com.flyread.file.imp0rt.base;
  * @author by hongbf on 2018/3/21.
  */
 public class Book {
-    private String ISBN;
-    private String 题名;
+    private String isbn;
+    private String name;
 
-    public String getISBN() {
-        return ISBN;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
-    public String get题名() {
-        return 题名;
+    public String getName() {
+        return name;
     }
 
-    public void set题名(String 题名) {
-        this.题名 = 题名;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "isbn='" + isbn + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

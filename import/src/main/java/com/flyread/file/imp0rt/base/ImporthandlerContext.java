@@ -1,7 +1,6 @@
 package com.flyread.file.imp0rt.base;
 
-import io.netty.channel.ChannelHandler;
-import io.netty.channel.ChannelPipeline;
+import com.flyread.file.imp0rt.base.impl.BaseImportHandlerContext;
 
 /**
  * @author by hongbf on 2018/3/16.

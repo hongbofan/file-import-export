@@ -1,6 +1,11 @@
-package com.flyread.file.imp0rt.base;
+package com.flyread.file.imp0rt.base.impl;
 
 
+
+import com.flyread.file.imp0rt.base.ImportHandler;
+import com.flyread.file.imp0rt.base.ImportPipeline;
+import com.flyread.file.imp0rt.model.ImportRequest;
+import com.flyread.file.imp0rt.model.ImportResponse;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -9,15 +14,18 @@ import java.util.Map;
 /**
  * @author by hongbf on 2018/3/16.
  */
-public class DefaultImportPipeline implements ImportPipeline{
+public class DefaultImportPipeline implements ImportPipeline {
     private final BaseImportHandlerContext head;
     private final BaseImportHandlerContext tail;
-
-    public DefaultImportPipeline() {
+    private ImportRequest request;
+    private ImportResponse response;
+    public DefaultImportPipeline(ImportRequest request) {
         this.head = new HeadContext(this);
         this.tail = new TailContext(this);
         head.next = tail;
         tail.prev = head;
+        this.request = request;
+        response = new ImportResponse();
     }
 
     @Override
@@ -138,11 +146,23 @@ public class DefaultImportPipeline implements ImportPipeline{
         }
     }
 
+    @Override
     public BaseImportHandlerContext getHead() {
         return head;
     }
 
+    @Override
     public BaseImportHandlerContext getTail() {
         return tail;
     }
+
+    @Override
+    public ImportRequest getRequest() {
+        return request;
+    }
+    @Override
+    public ImportResponse getResponse() {
+        return response;
+    }
+
 }

@@ -4,7 +4,8 @@ package com.flyread.file.imp0rt.base;
  * @author by hongbf on 2018/2/26.
  */
 public enum ImportType {
-    EXCEL("excel", "excel","excel");
+    EXCEL("excel", "excel","excel"),
+    TXT("txt","txt","txt");
 
     /**
      * 编码

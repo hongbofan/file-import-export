@@ -2,6 +2,9 @@ package com.flyread.file.imp0rt.base;
 
 
 
+import com.flyread.file.imp0rt.base.impl.BaseImportHandlerContext;
+import com.flyread.file.imp0rt.model.ImportRequest;
+import com.flyread.file.imp0rt.model.ImportResponse;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelPipeline;
 
@@ -20,4 +23,9 @@ public interface ImportPipeline extends Iterable<Map.Entry<String, ImportHandler
     ImportPipeline remove(ImportHandler handler);
     ImportHandler remove(String name);*/
     Map<String, ImportHandler> toMap();
+
+    ImportRequest getRequest();
+    ImportResponse getResponse();
+    BaseImportHandlerContext getHead();
+    BaseImportHandlerContext getTail();
 }

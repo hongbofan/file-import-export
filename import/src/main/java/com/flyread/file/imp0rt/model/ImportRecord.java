@@ -6,14 +6,25 @@ import java.util.List;
  * @author  hongbf on 2018/2/25.
  */
 public class ImportRecord {
-    private List<Object> list;
+    private List<String> list;
 
-    public List<Object> getList() {
+    private boolean isHeader;
+
+    public List<String> getList() {
         return list;
     }
 
-    public void setList(List<Object> list) {
+    public void setList(List<String> list) {
         this.list = list;
+    }
+
+
+    public boolean isHeader() {
+        return isHeader;
+    }
+
+    public void setHeader(boolean header) {
+        isHeader = header;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.flyread.file.imp0rt.base;
 
+import com.flyread.file.imp0rt.base.impl.BaseImportHandlerContext;
+
 /**
  * @author by hongbf on 2018/2/28.
  */
@@ -9,5 +11,5 @@ public interface ImportHandler {
      * @param context Import上下文
      * @throws Exception
      */
-    void handleRequest(BaseImportHandlerContext context,Object msg) throws Exception;
+    void handleRequest(BaseImportHandlerContext context, Object msg) throws Exception;
 }

@@ -6,7 +6,6 @@ package com.flyread.file.imp0rt.model;
 public class ImportRow {
     private String data;
     private boolean isHeader;
-    private String[] headers;
     public ImportRow(String data) {
         this.data = data;
     }
@@ -25,13 +24,5 @@ public class ImportRow {
 
     public void setHeader(boolean header) {
         isHeader = header;
-    }
-
-    public String[] getHeaders() {
-        return headers;
-    }
-
-    public void setHeaders(String[] headers) {
-        this.headers = headers;
     }
 }

@@ -15,16 +15,19 @@ import java.util.Map;
  * @author by hongbf on 2018/3/16.
  */
 public abstract class BaseDecodeHandler implements ImportHandler {
+    private Map<String, String> headerMap;
     @Override
     public void handleRequest(BaseImportHandlerContext context, Object msg) throws Exception {
         if (msg instanceof ImportRow) {
             ImportRow row = (ImportRow) msg;
-            ImportRequest request = context.pipeline().getRequest();
-            ImportConfig config = request.getConfig();
-            Map<String, String> headerMap = config.getHeaderMap();
-            String[] splits = row.getData().split(config.getSeparator());
+            ImportConfig config = context.pipeline().getRequest().getConfig();
 
+            String[] splits = row.getData().split(config.getSeparator());
+            if (headerMap == null) {
+                headerMap = config.getHeaderMap();
+            }
             context.fireChannelRead(decode(splits, headerMap));
+
         }
     }
 

@@ -1,21 +1,23 @@
 package com.flyread.file.imp0rt.excel;
 
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.sym.error;
+
 /**
  * @author by hongbf on 2018/2/28.
  */
 public enum  ExcelCellType {
 
-    CELL_TYPE_NUMERIC("0", "numeric","numeric"),
-    CELL_TYPE_STRING("1", "string","string"),
-    CELL_TYPE_FORMULA("2", "formula","formula"),
-    CELL_TYPE_BLANK("3", "blank","blank"),
-    CELL_TYPE_BOOLEAN("4", "boolean","boolean"),
-    CELL_TYPE_ERROR("5", "error","error");
+    CELL_TYPE_NUMERIC(0, "numeric","numeric"),
+    CELL_TYPE_STRING(1, "string","string"),
+    CELL_TYPE_FORMULA(2, "formula","formula"),
+    CELL_TYPE_BLANK(3, "blank","blank"),
+    CELL_TYPE_BOOLEAN(4, "boolean","boolean"),
+    CELL_TYPE_ERROR(5, "error","error");
 
     /**
      * 编码
      */
-    private String code;
+    private int code;
     /**
      * 描述
      */
@@ -32,7 +34,7 @@ public enum  ExcelCellType {
      * @param desc
      * @param chineseName
      */
-    ExcelCellType(String code, String desc, String chineseName) {
+    ExcelCellType(int code, String desc, String chineseName) {
         this.code = code;
         this.desc = desc;
         this.chineseName = chineseName;
@@ -44,9 +46,9 @@ public enum  ExcelCellType {
      * @param code 编码
      * @return 状态
      */
-    public static ExcelCellType getStatusByCode(String code) {
+    public static ExcelCellType getStatusByCode(int code) {
         for (ExcelCellType val : values()) {
-            if (val.code.equals(code)) {
+            if (val.code == code) {
                 return val;
             }
         }
@@ -54,7 +56,7 @@ public enum  ExcelCellType {
     }
 
 
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 

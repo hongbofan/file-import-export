@@ -1,14 +1,17 @@
 package com.flyread.file.export.base;
 
 
+import com.flyread.file.export.base.impl.BaseExportHandlerContext;
+
 /**
  * @author by hongbf on 2018/2/26.
  */
 public interface ExportHandler {
     /**
-     * 处理Export请求
-     * @param context Export上下文
+     * 处理 Export请求
+     * @param context handler上下文
+     * @param msg 流入数据
      * @throws Exception
      */
-    void handleRequest(BaseExportContext context) throws Exception;
+    void handleRequest(BaseExportHandlerContext context, Object msg) throws Exception;
 }

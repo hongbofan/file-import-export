@@ -21,7 +21,7 @@ public abstract class BaseImportHandlerContext implements ImportHandlerContext {
     @Override
     public BaseImportHandlerContext fireChannelRead(Object msg) {
         if (msg == null) {
-            throw new NullPointerException("msg");
+            throw new NullPointerException("msg is null");
         }
         final BaseImportHandlerContext next = findContextInbound();
         try {

@@ -31,7 +31,7 @@ public class ImportBootstrap {
         return this;
     }
     public ImportResponse start(ImportType type) {
-        if (request == null) {
+        if (this.request == null) {
             build();
         }
         return ImportFactory.create(type,this.request).importFile();

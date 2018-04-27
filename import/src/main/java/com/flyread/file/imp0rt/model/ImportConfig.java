@@ -9,6 +9,9 @@ public class ImportConfig {
     private String separator;
     private Map<String,String> headerMap;
     private String clazzName;
+
+    private String importFileCharset;
+
     public String getSeparator() {
         return separator;
     }
@@ -31,5 +34,13 @@ public class ImportConfig {
 
     public void setClazzName(String clazzName) {
         this.clazzName = clazzName;
+    }
+
+    public String getImportFileCharset() {
+        return importFileCharset;
+    }
+
+    public void setImportFileCharset(String importFileCharset) {
+        this.importFileCharset = importFileCharset;
     }
 }

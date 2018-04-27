@@ -1,5 +1,6 @@
 package com.flyread.file.imp0rt.util;
 
+import com.flyread.file.imp0rt.excel.ExcelCellType;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
 
@@ -7,42 +8,40 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.regex.Pattern;
 
+import static com.flyread.file.imp0rt.excel.ExcelCellType.CELL_TYPE_NUMERIC;
+
 /**
- * Created by DELL on 2018/2/25.
+ * @author  by hongbf on 2018/2/25.
  */
 public class ImportUtil {
-    private static final DecimalFormat df = new DecimalFormat("0");// 格式化 number为整
-
-    private static final DecimalFormat df_per = new DecimalFormat("##.00%");//格式化分比格式，后面不足2位的用0补齐
-
-    //private static final DecimalFormat df_per_ = new DecimalFormat("0.00%");//格式化分比格式，后面不足2位的用0补齐,比如0.00,%0.01%
-
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 格式化日期字符串
-
-    private static final DecimalFormat sc_number  = new DecimalFormat("0.00E000"); //格式化科学计数器
-
-    private static final Pattern points_ptrn = Pattern.compile("0.0+_*[^/s]+");
-
+    public final static String DEFAULT_CHARSET_NAME = "UTF-8";
     public static Object getCellValue(Cell cell) {
         Object value;
-        switch (cell.getCellType()) {
-            case 0:
+        ExcelCellType type = ExcelCellType.getStatusByCode(cell.getCellType());
+        if (type == null) {
+            throw new RuntimeException("cell type is invalid:" + cell.getCellType());
+        }
+        switch (type) {
+            case CELL_TYPE_NUMERIC:
                 value = cell.getNumericCellValue();
                 break;
-            case 1:
+            case CELL_TYPE_STRING:
                 value = cell.getStringCellValue();
                 break;
-            case 2:
+            case CELL_TYPE_FORMULA:
                 value = cell.getCellFormula();
                 break;
-            case 3:
+            case CELL_TYPE_BLANK:
                 value = cell.getStringCellValue();
                 break;
-            case 4:
+            case CELL_TYPE_BOOLEAN:
                 value = cell.getBooleanCellValue();
                 break;
-            default:
+            case CELL_TYPE_ERROR:
                 value = cell.getErrorCellValue();
+                break;
+            default:
+                value = "";
         }
         return value;
     }

@@ -8,7 +8,8 @@ import com.flyread.file.imp0rt.base.impl.BaseImportHandlerContext;
 public interface ImportHandler {
     /**
      * 处理 Import请求
-     * @param context Import上下文
+     * @param context handler上下文
+     * @param msg 流入数据
      * @throws Exception
      */
     void handleRequest(BaseImportHandlerContext context, Object msg) throws Exception;

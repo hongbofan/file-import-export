@@ -128,7 +128,6 @@ public class DefaultImportPipeline implements ImportPipeline {
 
         @Override
         public void handleRequest(BaseImportHandlerContext context,Object msg) throws Exception {
-
         }
     }
     private final class HeadContext extends BaseImportHandlerContext implements ImportHandler{

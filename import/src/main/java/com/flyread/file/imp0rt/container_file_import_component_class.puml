@@ -1,0 +1,147 @@
+@startuml
+
+interface ImportHandlerContext {
+    ImportHandler handler()
+    ImportPipeline pipeline()
+    BaseImportHandlerContext fireChannelRead(Object msg)
+}
+abstract class BaseImportHandlerContext implements ImportHandlerContext {
+    volatile BaseImportHandlerContext next
+    volatile BaseImportHandlerContext prev
+    private final DefaultImportPipeline pipeline
+    private final String name
+    BaseImportHandlerContext fireChannelRead(Object msg)
+    ImportPipeline pipeline()
+    String getName()
+    BaseImportHandlerContext findContextInbound()
+}
+class DefaultImportHandlerContext extends BaseImportHandlerContext {
+    private final ImportHandler handler
+    ImportHandler handler()
+}
+interface ImportHandler {
+    void handleRequest(BaseImportHandlerContext context, Object msg) throws Exception
+}
+abstract class BaseReadHandler implements ImportHandler {
+    private List<Object> list = new ArrayList<>()
+    void handleRequest(BaseImportHandlerContext context, Object msg)
+    void readLine(BaseImportHandlerContext context,List<Object> list,Object msg)
+}
+abstract class BaseDecodeHandler implements ImportHandler {
+    void handleRequest(BaseImportHandlerContext context, Object msg)
+    ImportRecord decode(String[] splits, Map<String, String> headerMap)
+}
+abstract class BaseToJavaBeanHandler implements ImportHandler {
+    private ImportRecord header
+    void handleRequest(BaseImportHandlerContext context, Object msg)
+    Object toJavaBean(String clazzName, ImportRecord record)
+}
+interface ImportPipeline {
+    ImportPipeline addFirst(String name, ImportHandler handler)
+    ImportPipeline addFirst(ImportHandler... handlers)
+    Map<String, ImportHandler> toMap()
+    ImportRequest getRequest()
+    ImportResponse getResponse()
+    BaseImportHandlerContext getHead()
+    BaseImportHandlerContext getTail()
+}
+class DefaultImportPipeline implements ImportPipeline {
+    private final BaseImportHandlerContext head
+    private final BaseImportHandlerContext tail
+    private ImportRequest request
+    private ImportResponse response
+    ImportPipeline addFirst(String name, ImportHandler handler)
+    ImportPipeline addFirst(ImportHandler... handlers)
+    Map<String, ImportHandler> toMap()
+    Iterator<Map.Entry<String, ImportHandler>> iterator()
+    void addFirst0(BaseImportHandlerContext newCtx)
+    BaseImportHandlerContext newContext(ImportHandler handler,String name)
+    class TailContext extends BaseImportHandlerContext implements ImportHandler
+    class HeadContext extends BaseImportHandlerContext implements ImportHandler
+    BaseImportHandlerContext getHead()
+    BaseImportHandlerContext getTail()
+    ImportRequest getRequest()
+    ImportResponse getResponse()
+}
+interface ImportService {
+    ImportResponse importFile()
+}
+class ExcelImportServiceImpl implements ImportService {
+    private ImportPipeline pipeline
+    ImportResponse importFile()
+}
+class TxtImportServiceImpl implements ImportService {
+    private ImportPipeline pipeline
+    ImportResponse importFile()
+}
+class ImportUtil {
+    Object getCellValue(Cell cell)
+}
+enum ExcelCellType {
+    CELL_TYPE_NUMERIC
+    CELL_TYPE_STRING
+    CELL_TYPE_FORMULA
+    CELL_TYPE_BLANK
+    CELL_TYPE_BOOLEAN
+    CELL_TYPE_ERROR
+}
+class ImportResponse {
+    int importCount
+    List<Object> result
+    int getImportCount()
+    void setImportCount(int importCount)
+    List<Object> getResult()
+    void setResult(List<Object> result)
+}
+class ImportRequest {
+    File importFile
+    ImportConfig config
+    ImportRequest(File importFile)
+    File getImportFile()
+    void setImportFile(File importFile)
+    ImportConfig getConfig()
+    void setConfig(ImportConfig config)
+}
+class ImportFactory {
+    ImportService create(ImportType type, ImportRequest request)
+}
+enum ImportType {
+    EXCEL("excel", "excel","excel"),
+    TXT("txt","txt","txt");
+}
+class ImportBootstrap {
+    File file
+    ImportConfig config
+    ImportRequest request
+    ImportBootstrap initFile(String path)
+    ImportBootstrap initConfig(String configId)
+    ImportBootstrap build()
+    ImportResponse start(ImportType type)
+    ImportConfig getConfig(String configId)
+}
+class ImportConfig {
+    private String separator
+    private Map<String,String> headerMap
+    private String clazzName
+}
+class ImportRecord {
+    private List<String> list
+    private boolean isHeader
+}
+class ImportRow {
+    private String data
+    private boolean isHeader
+}
+ImportBootstrap <-- ImportRequest
+ImportBootstrap <-- ImportConfig
+ImportBootstrap <-- ImportFactory
+ImportFactory <-- ImportType
+ImportFactory <-- ImportService
+ImportUtil <-- ExcelCellType
+DefaultImportPipeline <-- ImportRequest
+DefaultImportPipeline <-- ImportResponse
+ImportHandlerContext <-- ImportHandler
+ImportHandlerContext <-- ImportPipeline
+BaseDecodeHandler <-- ImportRecord
+BaseToJavaBeanHandler <-- ImportRow
+@enduml

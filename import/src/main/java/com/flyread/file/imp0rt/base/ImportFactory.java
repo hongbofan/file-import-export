@@ -6,6 +6,7 @@ import com.flyread.file.imp0rt.excel.ExcelImportServiceImpl;
 import com.flyread.file.imp0rt.excel.ExcelReadLineHandler;
 import com.flyread.file.imp0rt.excel.ExcelToJavaBeanHandler;
 import com.flyread.file.imp0rt.model.ImportRequest;
+import com.flyread.file.imp0rt.txt.TxtDecoderHandler;
 import com.flyread.file.imp0rt.txt.TxtImportServiceImpl;
 import com.flyread.file.imp0rt.txt.TxtReadLineHandler;
 import com.flyread.file.imp0rt.txt.TxtToJavaBeanHandler;
@@ -27,7 +28,7 @@ public class ImportFactory {
                 return new TxtImportServiceImpl(
                         new DefaultImportPipeline(request)
                                 .addFirst(new TxtToJavaBeanHandler())
-                                .addFirst(new ExcelDecoderHandler())
+                                .addFirst(new TxtDecoderHandler())
                                 .addFirst(new TxtReadLineHandler())
                 );
             default:

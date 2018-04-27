@@ -1,0 +1,12 @@
+@startuml
+start
+:导入;
+:输入文件路径,初始化文件;
+:输入配置ID获取配置;
+:输入导入文件类型开始导入;
+:经过BaseReadHandler,读取每一行并封装成ImportRow传入下一个handler;
+:经过BaseDecodeHandler,读取ImportRow并封装成ImportRecord传入下一个handler;
+:经过BaseToJavaBeanHandler,读取ImportRecord反射成JavaBean塞入ImportResponse;
+:返回ImportResponse;
+end
+@enduml

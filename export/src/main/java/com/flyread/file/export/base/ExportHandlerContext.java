@@ -1,27 +1,27 @@
-package com.flyread.file.imp0rt.base;
+package com.flyread.file.export.base;
 
-import com.flyread.file.imp0rt.base.impl.BaseImportHandlerContext;
+import com.flyread.file.export.base.impl.BaseExportHandlerContext;
 
 /**
  * @author by hongbf on 2018/3/16.
  */
-public interface ImportHandlerContext {
+public interface ExportHandlerContext {
     /**
      * 返回该上下文的handler
      * @return
      */
-    ImportHandler handler();
+    ExportHandler handler();
 
     /**
      * 返回该上下文所处的pipeline
      * @return
      */
-    ImportPipeline pipeline();
+    ExportPipeline pipeline();
 
     /**
      * 流转到下一个handler
      * @param msg 流入数据
      * @return
      */
-    BaseImportHandlerContext fireChannelRead(Object msg);
+    BaseExportHandlerContext fireChannelRead(Object msg);
 }

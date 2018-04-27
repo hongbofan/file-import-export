@@ -22,6 +22,7 @@ public abstract class BaseToJavaBeanHandler implements ImportHandler {
             if (header != null) {
                 ImportResponse response = context.pipeline().getResponse();
                 response.getResult().add(toJavaBean(clazzName, record));
+                response.setImportCount(response.getResult().size());
             }
             if (record.isHeader()) {
                 header = record;
@@ -34,12 +35,12 @@ public abstract class BaseToJavaBeanHandler implements ImportHandler {
         Class<?> clazz = Class.forName(clazzName);
         Field[] declaredFields = clazz.getDeclaredFields();
         Object obj = clazz.getConstructor().newInstance();
-        for (Field filed : declaredFields) {
+        for (Field field : declaredFields) {
             for (int j = 0; j < header.getList().size(); j++) {
                 String s = header.getList().get(j);
-                if (filed.getName().equals(s)) {
-                    filed.setAccessible(true);
-                    filed.set(obj, record.getList().get(j));
+                if (field.getName().equals(s)) {
+                    field.setAccessible(true);
+                    field.set(obj, record.getList().get(j));
                 }
             }
         }

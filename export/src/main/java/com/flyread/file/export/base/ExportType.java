@@ -4,7 +4,8 @@ package com.flyread.file.export.base;
  * @author by hongbf on 2018/2/26.
  */
 public enum ExportType {
-    EXCEL("excel", "excel","excel");
+    EXCEL("excel", "excel","excel"),
+    TXT("txt","txt","txt");
 
     /**
      * 编码

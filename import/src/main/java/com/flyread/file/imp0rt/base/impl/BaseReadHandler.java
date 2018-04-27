@@ -17,5 +17,7 @@ public abstract class BaseReadHandler implements ImportHandler {
         list.forEach(context::fireChannelRead);
         list.clear();
     }
-    protected abstract void readLine(BaseImportHandlerContext context,List<Object> list,Object msg);
+    protected void readLine(BaseImportHandlerContext context,List<Object> list,Object msg) {
+        list.add(msg);
+    }
 }

@@ -1,73 +1,50 @@
 package com.flyread.file.export.model;
 
-import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Map;
 
 /**
  * @author by hongbf on 2018/2/26.
  */
 public class ExportRequest {
-    private String outputFileName;
-    private String outputFileSuffix;
-    private String outputPath;
-    private String prefix;
-    private File templateFile;
 
-    private Object exportData;
+    private Map<String,Object> exportData;
 
-    public ExportRequest(String outputFileName,String outputFileSuffix,String outputPath,String prefix,File templateFile, Object exportData) {
-        this.outputFileName = outputFileName;
-        this.outputFileSuffix = outputFileSuffix;
-        this.outputPath = outputPath;
-        this.prefix = prefix;
-        this.templateFile = templateFile;
-        this.exportData = exportData;
-    }
+    private ExportConfig config;
+    private OutputStream outputStream;
+    private InputStream templateInputStream;
 
-    public String getOutputFileName() {
-        return outputFileName;
-    }
-
-    public void setOutputFileName(String outputFileName) {
-        this.outputFileName = outputFileName;
-    }
-
-    public String getOutputFileSuffix() {
-        return outputFileSuffix;
-    }
-
-    public void setOutputFileSuffix(String outputFileSuffix) {
-        this.outputFileSuffix = outputFileSuffix;
-    }
-
-    public String getOutputPath() {
-        return outputPath;
-    }
-
-    public void setOutputPath(String outputPath) {
-        this.outputPath = outputPath;
-    }
-
-    public String getPrefix() {
-        return prefix;
-    }
-
-    public void setPrefix(String prefix) {
-        this.prefix = prefix;
-    }
-
-    public File getTemplateFile() {
-        return templateFile;
-    }
-
-    public void setTemplateFile(File templateFile) {
-        this.templateFile = templateFile;
-    }
-
-    public Object getExportData() {
+    public Map<String,Object> getExportData() {
         return exportData;
     }
 
-    public void setExportData(Object exportData) {
+    public void setExportData(Map<String,Object> exportData) {
         this.exportData = exportData;
+    }
+
+    public ExportConfig getConfig() {
+        return config;
+    }
+
+    public void setConfig(ExportConfig config) {
+        this.config = config;
+    }
+
+    public OutputStream getOutputStream() {
+        return outputStream;
+    }
+
+    public void setOutputStream(OutputStream outputStream) {
+        this.outputStream = outputStream;
+    }
+
+    public InputStream getTemplateInputStream() {
+        return templateInputStream;
+    }
+
+    public void setTemplateInputStream(InputStream templateInputStream) {
+        this.templateInputStream = templateInputStream;
     }
 }

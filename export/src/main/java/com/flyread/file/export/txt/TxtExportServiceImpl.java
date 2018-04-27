@@ -1,4 +1,4 @@
-package com.flyread.file.export.excel;
+package com.flyread.file.export.txt;
 
 import com.flyread.file.export.base.ExportPipeline;
 import com.flyread.file.export.base.ExportService;
@@ -7,20 +7,20 @@ import com.flyread.file.export.model.ExportConfig;
 import com.flyread.file.export.model.ExportRequest;
 import com.flyread.file.export.model.ExportResponse;
 
-import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.*;
-
-import static org.apache.commons.jexl2.parser.ParserConstants.ne;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Collection;
 
 
 /**
  * @author by hongbf on 2018/2/26.
  */
-public class ExcelExportServiceImpl implements ExportService {
+public class TxtExportServiceImpl <E> implements ExportService {
     private final ExportPipeline pipeline;
 
-    public ExcelExportServiceImpl(ExportPipeline pipeline) {
+    public TxtExportServiceImpl(ExportPipeline pipeline) {
         this.pipeline = pipeline;
     }
 
@@ -31,13 +31,14 @@ public class ExcelExportServiceImpl implements ExportService {
         ExportRequest request = pipeline.getRequest();
         ExportConfig config = request.getConfig();
         String path = getRelativePath(config);
-        OutputStream outputStream = getOutputStream(config,path);
+        OutputStream outputStream = getOutputStream(config, path);
         InputStream inputStream = getTemplateInputStream(config);
-
         request.setOutputStream(outputStream);
         request.setTemplateInputStream(inputStream);
+
         try {
-            head.fireChannelRead(request.getExportData());
+            Collection<?> exportData = (Collection<?>) request.getExportData().get("list");
+            exportData.forEach(head::fireChannelRead);
             outputStream.close();
             if (inputStream != null) {
                 inputStream.close();
@@ -45,6 +46,7 @@ public class ExcelExportServiceImpl implements ExportService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
 
         response.setPath(path);
         return response;

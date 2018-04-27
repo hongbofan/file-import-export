@@ -17,7 +17,7 @@ import java.util.Collection;
 /**
  * @author by hongbf on 2018/2/26.
  */
-public class TxtExportServiceImpl <E> implements ExportService {
+public class TxtExportServiceImpl implements ExportService {
     private final ExportPipeline pipeline;
 
     public TxtExportServiceImpl(ExportPipeline pipeline) {

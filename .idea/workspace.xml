@@ -2,59 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a218bb55-ba26-46a1-a299-4f57fdf23ae8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/base/ExportHandlerContext.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/base/ExportPipeline.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/base/impl/BaseDecodeHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/base/impl/BaseExportHandlerContext.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/base/impl/BaseWriteHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/base/impl/DefaultExportHandlerContext.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/base/impl/DefaultExportPipeline.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/excel/ExcelWriteHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/model/ExportConfig.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/txt/TxtDecodeHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/txt/TxtExportServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/txt/TxtWriteHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/container_file_import_component_class.puml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/container_file_import_component_flow.puml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/base/BaseExportContext.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/base/ExportHandlerPipeline.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/container_file_export_component_class.puml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/container_file_export_component_excel_export_flow.puml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/container_file_export_component_flow.puml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/excel/DefaultExcelExportHandler.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/excel/ExcelExportContext.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/excel/ExcelExportData.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/excel/util/ExcelUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/container_file_import_export_component_class.puml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/container_file_import_export_component_excel_import_flow.puml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/container_file_import_export_component_flow.puml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/import/src/main/test/Test1.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/ExportBootstrap.java" afterPath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/ExportBootstrap.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/base/ExportFactory.java" afterPath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/base/ExportFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/base/ExportHandler.java" afterPath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/base/ExportHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/base/ExportService.java" afterPath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/base/ExportService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/base/ExportType.java" afterPath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/base/ExportType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/excel/ExcelExportServiceImpl.java" afterPath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/excel/ExcelExportServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/model/ExportRequest.java" afterPath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/model/ExportRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/export/src/main/test/Test.java" afterPath="$PROJECT_DIR$/export/src/main/test/Test.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/txt/TxtExportServiceImpl.java" afterPath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/txt/TxtExportServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/ImportBootstrap.java" afterPath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/ImportBootstrap.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/base/ImportFactory.java" afterPath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/base/ImportFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/base/ImportPipeline.java" afterPath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/base/ImportPipeline.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/base/Importhandler.java" afterPath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/base/Importhandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/base/ImporthandlerContext.java" afterPath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/base/ImporthandlerContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/base/impl/BaseDecodeHandler.java" afterPath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/base/impl/BaseDecodeHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/base/impl/BaseImportHandlerContext.java" afterPath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/base/impl/BaseImportHandlerContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/base/impl/BaseReadHandler.java" afterPath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/base/impl/BaseReadHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/base/impl/BaseToJavaBeanHandler.java" afterPath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/base/impl/BaseToJavaBeanHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/base/impl/DefaultImportPipeline.java" afterPath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/base/impl/DefaultImportPipeline.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/excel/ExcelCellType.java" afterPath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/excel/ExcelCellType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/excel/ExcelImportServiceImpl.java" afterPath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/excel/ExcelImportServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/model/ImportConfig.java" afterPath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/model/ImportConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/txt/TxtImportServiceImpl.java" afterPath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/txt/TxtImportServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/util/ImportUtil.java" afterPath="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/util/ImportUtil.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/excel/util/EachCommandExtend.java" afterPath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/excel/command/EachCommandExtend.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/excel/util/MergeCommand.java" afterPath="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/excel/command/MergeCommand.java" />
     </list>
     <ignored path="file-import-export.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -91,14 +40,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TxtExportServiceImpl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TxtExportServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/txt/TxtExportServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="694">
-              <caret line="43" column="36" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
+            <state relative-caret-position="494">
+              <caret line="44" column="13" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Test.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/import/src/main/test/Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="550">
+              <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImportBootstrap.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/ImportBootstrap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="575">
+              <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -173,7 +142,6 @@
         <option value="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/ExportBootstrap.java" />
         <option value="$PROJECT_DIR$/export/src/main/test/Test.java" />
         <option value="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/base/impl/BaseToJavaBeanHandler.java" />
-        <option value="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/ImportBootstrap.java" />
         <option value="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/base/impl/BaseDecodeHandler.java" />
         <option value="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/base/impl/BaseReadHandler.java" />
         <option value="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/model/ImportConfig.java" />
@@ -184,6 +152,7 @@
         <option value="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/base/ExportService.java" />
         <option value="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/excel/ExcelExportServiceImpl.java" />
         <option value="$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/txt/TxtExportServiceImpl.java" />
+        <option value="$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/ImportBootstrap.java" />
       </list>
     </option>
   </component>
@@ -1514,12 +1483,12 @@
       <workItem from="1523149473489" duration="15632000" />
       <workItem from="1523495232283" duration="14602000" />
       <workItem from="1523856560474" duration="53803000" />
-      <workItem from="1524811815465" duration="9500000" />
+      <workItem from="1524811815465" duration="10189000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="373808000" />
+    <option name="totallyTimeSpent" value="374497000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1742,14 +1711,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/import/src/main/test/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/txt/TxtDecodeHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
@@ -1766,14 +1727,6 @@
             <element signature="e#230#231#0" expanded="true" />
             <element signature="e#257#258#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/ImportBootstrap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2031,11 +1984,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/export/src/main/java/com/flyread/file/export/txt/TxtExportServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="694">
-          <caret line="43" column="36" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
+        <state relative-caret-position="494">
+          <caret line="44" column="13" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/import/src/main/test/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/import/src/main/java/com/flyread/file/imp0rt/ImportBootstrap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>

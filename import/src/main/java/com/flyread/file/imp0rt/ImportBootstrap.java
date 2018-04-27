@@ -45,6 +45,7 @@ public class ImportBootstrap {
         config.setHeaderMap(map);
         config.setSeparator(" ");
         config.setClazzName("com.flyread.file.imp0rt.base.Book");
+        config.setImportFileCharset("GBK");
         return config;
     }
 }

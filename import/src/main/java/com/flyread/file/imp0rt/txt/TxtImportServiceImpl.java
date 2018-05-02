@@ -4,7 +4,9 @@ import com.flyread.file.imp0rt.base.ImportPipeline;
 import com.flyread.file.imp0rt.base.ImportService;
 import com.flyread.file.imp0rt.base.impl.BaseImportHandlerContext;
 import com.flyread.file.imp0rt.base.impl.DefaultImportPipeline;
+import com.flyread.file.imp0rt.model.ImportConfig;
 import com.flyread.file.imp0rt.model.ImportResponse;
+import com.flyread.file.imp0rt.model.StringRow;
 import com.flyread.file.imp0rt.util.ImportUtil;
 
 import java.io.File;
@@ -26,10 +28,11 @@ public class TxtImportServiceImpl implements ImportService {
     @Override
     public ImportResponse importFile() {
         BaseImportHandlerContext head = pipeline.getHead();
+        ImportConfig config = pipeline.getRequest().getConfig();
         File file = pipeline.getRequest().getImportFile();
         try {
-            Files.lines(Paths.get(file.getAbsolutePath()), getCharset(pipeline.getRequest().getConfig().getImportFileCharset()))
-                    .forEach(head::fireChannelRead);
+            Files.lines(Paths.get(file.getAbsolutePath()), getCharset(config.getImportFileCharset()))
+                    .forEach(s -> head.fireChannelRead(new StringRow(s,config.getSeparator())));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

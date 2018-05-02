@@ -1,10 +1,13 @@
+/*
 package com.flyread.file.imp0rt.model;
 
 import java.util.List;
 
+*/
 /**
  * @author  hongbf on 2018/2/25.
- */
+ *//*
+
 public class ImportRecord {
     private List<String> list;
 
@@ -34,3 +37,4 @@ public class ImportRecord {
         return sb.toString();
     }
 }
+*/

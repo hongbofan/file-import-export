@@ -3,6 +3,8 @@ package com.flyread.file.imp0rt.excel;
 import com.flyread.file.imp0rt.base.ImportPipeline;
 import com.flyread.file.imp0rt.base.impl.BaseImportHandlerContext;
 import com.flyread.file.imp0rt.base.ImportService;
+import com.flyread.file.imp0rt.model.BaseImportRow;
+import com.flyread.file.imp0rt.model.ExcelRow;
 import com.flyread.file.imp0rt.model.ImportResponse;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -36,7 +38,7 @@ public class ExcelImportServiceImpl implements ImportService {
             Sheet sheet = workbook.getSheetAt(0);
 
             for (int i = 0;i<sheet.getLastRowNum();i++) {
-                head.fireChannelRead(sheet.getRow(i));
+                head.fireChannelRead(new ExcelRow(sheet.getRow(i)));
             }
 
         } catch (Exception e) {

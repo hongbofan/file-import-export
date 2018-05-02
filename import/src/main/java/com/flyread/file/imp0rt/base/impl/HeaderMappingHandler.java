@@ -11,6 +11,10 @@ import java.util.Map;
  */
 public class HeaderMappingHandler extends BaseRowToRowHandler<BaseImportRow> {
 
+    public HeaderMappingHandler() {
+        super(BaseImportRow.class);
+    }
+
     @Override
     protected void process(BaseImportHandlerContext context, BaseImportRow row,List<Object> out) throws Exception{
         Map<String, String> headerMap = context.pipeline().getRequest().getConfig().getHeaderMap();

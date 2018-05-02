@@ -10,15 +10,13 @@ import java.util.List;
  * @author by hongbf on 2018/5/2.
  */
 public abstract class BaseRowToRowHandler<T> implements ImportHandler{
-    private final TypeParameterMatcher matcher;
-    protected BaseRowToRowHandler() {
-        matcher = TypeParameterMatcher.find(this, BaseRowToRowHandler.class, "T");
-    }
-    protected BaseRowToRowHandler(Class<? extends T> inboundMessageType) {
-        matcher = TypeParameterMatcher.get(inboundMessageType);
+    private final Class<? extends T> type;
+
+     protected BaseRowToRowHandler(Class<? extends T> inboundMessageType) {
+      this.type = inboundMessageType;
     }
     public boolean acceptInboundMessage(Object msg) throws Exception {
-        return matcher.match(msg);
+        return  this.type.isAssignableFrom(msg.getClass());
     }
     @Override
     public void handleRequest(BaseImportHandlerContext context, Object msg) throws Exception {

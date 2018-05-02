@@ -15,11 +15,9 @@ public class RowHeaderHandler extends BaseRowToRowHandler<BaseImportRow> {
     private boolean hasHeader;
 
     public RowHeaderHandler() {
+        super(BaseImportRow.class);
     }
 
-    public RowHeaderHandler(boolean hasHeader) {
-        this.hasHeader = hasHeader;
-    }
 
 
     @Override

@@ -1,16 +1,4 @@
 import com.flyread.file.imp0rt.ImportBootstrap;
-import com.flyread.file.imp0rt.base.ImportType;
-import com.flyread.file.imp0rt.base.impl.DefaultImportPipeline;
-import com.flyread.file.imp0rt.excel.*;
-import com.flyread.file.imp0rt.model.ImportConfig;
-import com.flyread.file.imp0rt.model.ImportRequest;
-import com.flyread.file.imp0rt.model.ImportResponse;
-
-import java.io.File;
-import java.text.DecimalFormat;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author by hongbf on 2018/3/14.
@@ -25,7 +13,7 @@ public class Test {
         new ImportBootstrap()
                 .initFile("C:\\Users\\DELL\\Desktop\\新建文件夹\\template.txt")
                 .initConfig("")
-                .start(ImportType.TXT)
+                .start()
                 .getResult()
                 .forEach(System.out::println);
     }
@@ -33,7 +21,7 @@ public class Test {
         new ImportBootstrap()
                 .initFile("C:\\Users\\DELL\\Desktop\\新建文件夹\\template.xls")
                 .initConfig("")
-                .start(ImportType.EXCEL)
+                .start()
                 .getResult()
                 .forEach(System.out::println);
     }

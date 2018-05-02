@@ -13,6 +13,10 @@ import java.util.List;
  */
 public class ToJavaBeanHandler extends BaseRowToRowHandler<BaseImportRow> {
 
+    public ToJavaBeanHandler() {
+        super(BaseImportRow.class);
+    }
+
     @Override
     protected void process(BaseImportHandlerContext context, BaseImportRow row,List<Object> out) throws Exception {
         String clazzName = context.pipeline().getRequest().getConfig().getClazzName();

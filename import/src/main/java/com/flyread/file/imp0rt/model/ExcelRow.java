@@ -21,7 +21,7 @@ public class ExcelRow extends BaseImportRow {
 
     @Override
     public Object get(int idx) {
-        return ImportUtil.getCellValue(row.getCell(idx));
+        return ImportUtil.getCellValue(row.getCell(idx + 1));
     }
 
     @Override
@@ -29,5 +29,10 @@ public class ExcelRow extends BaseImportRow {
         List<Object> list = new ArrayList<>();
         row.forEach(c -> list.add(ImportUtil.getCellValue(c)));
         return list.toArray();
+    }
+
+    @Override
+    public int size() {
+        return row == null ? 0 : row.getPhysicalNumberOfCells();
     }
 }

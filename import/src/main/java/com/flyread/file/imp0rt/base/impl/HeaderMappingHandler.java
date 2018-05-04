@@ -26,7 +26,7 @@ public class HeaderMappingHandler extends BaseRowToRowHandler<BaseImportRow> {
             map.forEach((k,v) -> {
                 String key = k;
                 if (headerMap.containsKey(k)) {
-                    k = headerMap.get(k);
+                    key = headerMap.get(k);
                 }
                 newMap.put(key,v);
             });

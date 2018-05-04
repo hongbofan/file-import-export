@@ -12,7 +12,6 @@ import java.util.List;
  * @author by hongbf on 2018/3/21.
  */
 public class ToJavaBeanHandler extends BaseRowToRowHandler<BaseImportRow> {
-
     public ToJavaBeanHandler() {
         super(BaseImportRow.class);
     }

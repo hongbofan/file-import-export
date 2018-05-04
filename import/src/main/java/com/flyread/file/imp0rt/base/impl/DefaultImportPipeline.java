@@ -24,8 +24,8 @@ public class DefaultImportPipeline implements ImportPipeline {
         this.tail = new TailContext(this);
         head.next = tail;
         tail.prev = head;
-        this.request = request;
         response = new ImportResponse();
+        this.request = request;
     }
 
     @Override
@@ -163,5 +163,4 @@ public class DefaultImportPipeline implements ImportPipeline {
     public ImportResponse getResponse() {
         return response;
     }
-
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<configuration
+        xmlns="http://www.w3school.com.cn"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.w3school.com.cn config.xsd" id="config1">
+
+    <mapper bean="com.flyread.file.imp0rt.base.Book">
+        <entity key="题名" value="name" type="String"/>
+        <entity key="ISBN" value="isbn" type="啊打发"/>
+        <entity key="责任者" value="infoAuthor"/>
+        <entity key="出版社" value="infoPublisher"/>
+        <entity key="出版日期" value="infoPubdate"/>
+        <entity key="单价" value="infoPrice"/>
+        <entity key="已定数量" value="orderCount"/>
+    </mapper>
+</configuration>

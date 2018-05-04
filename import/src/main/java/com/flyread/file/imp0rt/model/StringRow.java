@@ -20,4 +20,9 @@ public class StringRow extends BaseImportRow {
     public Object[] asArray() {
         return datas;
     }
+
+    @Override
+    public int size() {
+        return datas == null ? 0 : datas.length;
+    }
 }

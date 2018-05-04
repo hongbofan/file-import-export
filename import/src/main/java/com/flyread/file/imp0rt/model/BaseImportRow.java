@@ -17,6 +17,7 @@ public abstract class BaseImportRow {
         return null;
     }
     public abstract Object[] asArray();
+    public abstract int size();
 
     public boolean headerMatch(String key) {
 

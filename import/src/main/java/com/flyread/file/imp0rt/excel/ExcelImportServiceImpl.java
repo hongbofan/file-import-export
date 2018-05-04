@@ -18,6 +18,7 @@ import java.io.File;
  */
 public class ExcelImportServiceImpl implements ImportService {
     private final ImportPipeline pipeline;
+
     public ExcelImportServiceImpl(ImportPipeline pipeline) {
         this.pipeline = pipeline;
     }
@@ -28,16 +29,15 @@ public class ExcelImportServiceImpl implements ImportService {
             BaseImportHandlerContext head = pipeline.getHead();
             File file = pipeline.getRequest().getImportFile();
             Workbook workbook = null;
-            try{
+            try {
                 workbook = WorkbookFactory.create(file);
-            }catch (Exception e) {
+            } catch (Exception e) {
                 throw new RuntimeException(e);
             } finally {
                 IOUtils.closeQuietly(workbook);
             }
             Sheet sheet = workbook.getSheetAt(0);
-
-            for (int i = 0;i<sheet.getLastRowNum();i++) {
+            for (int i = sheet.getFirstRowNum(); i < sheet.getLastRowNum(); i++) {
                 head.fireChannelRead(new ExcelRow(sheet.getRow(i)));
             }
 

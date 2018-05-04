@@ -18,20 +18,27 @@ public class RowHeaderHandler extends BaseRowToRowHandler<BaseImportRow> {
         super(BaseImportRow.class);
     }
 
-
+    public RowHeaderHandler(boolean hasHeader) {
+        super(BaseImportRow.class);
+        this.hasHeader = hasHeader;
+    }
 
     @Override
-    protected void process(BaseImportHandlerContext context, BaseImportRow row,List<Object> out) throws Exception{
+    protected void process(BaseImportHandlerContext context, BaseImportRow row, List<Object> out) throws Exception {
+        if (row == null || row.size() == 0) {
+            return;
+        }
         if (hasHeader && headers == null) {
             headers = row.asArray();
             return;
         }
+        int length = headers == null ? row.size() : headers.length;
         Map<String, Object> map = row.getMap();
         if (map == null) {
-            map = new HashMap<>(headers.length);
+            map = new HashMap<>(length);
             row.setMap(map);
         }
-        for (int i = 0; i < headers.length; i++) {
+        for (int i = 0; i < length; i++) {
             map.put(hasHeader ? headers[i].toString() : Integer.toString(i + 1), row.get(i));
         }
         out.add(row);

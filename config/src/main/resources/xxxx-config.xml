@@ -3,7 +3,24 @@
         xmlns="http://www.w3school.com.cn"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.w3school.com.cn config.xsd" id="config1">
-
+    <csv>
+        <hasHeader></hasHeader>
+        <importFileCharset></importFileCharset>
+        <skipBlankRow></skipBlankRow>
+        <separator>,</separator>
+    </csv>
+    <excel>
+        <hasHeader>true</hasHeader>
+        <importFileCharset></importFileCharset>
+        <skipBlankRow></skipBlankRow>
+        <separator></separator>
+    </excel>
+    <txt>
+        <hasHeader></hasHeader>
+        <importFileCharset></importFileCharset>
+        <skipBlankRow></skipBlankRow>
+        <separator></separator>
+    </txt>
     <mapper bean="com.flyread.file.imp0rt.base.Book">
         <entity key="题名" value="name" type="String"/>
         <entity key="ISBN" value="isbn" type="啊打发"/>
@@ -11,6 +28,6 @@
         <entity key="出版社" value="infoPublisher"/>
         <entity key="出版日期" value="infoPubdate"/>
         <entity key="单价" value="infoPrice"/>
-        <entity key="已定数量" value="orderCount"/>
+        <entity key="已订数量" value="orderCount" type="Integer"/>
     </mapper>
 </configuration>

@@ -13,19 +13,21 @@ import java.util.Map;
 public class RowHeaderHandler extends BaseRowToRowHandler<BaseImportRow> {
     private Object[] headers;
     private boolean hasHeader;
+    private boolean skipBlankRow;
 
     public RowHeaderHandler() {
         super(BaseImportRow.class);
     }
 
-    public RowHeaderHandler(boolean hasHeader) {
+    public RowHeaderHandler(boolean hasHeader,boolean skipBlankRow) {
         super(BaseImportRow.class);
         this.hasHeader = hasHeader;
+        this.skipBlankRow = skipBlankRow;
     }
 
     @Override
     protected void process(BaseImportHandlerContext context, BaseImportRow row, List<Object> out) throws Exception {
-        if (row == null || row.size() == 0) {
+        if (skipBlankRow && isBlankRow(row)) {
             return;
         }
         if (hasHeader && headers == null) {
@@ -42,5 +44,9 @@ public class RowHeaderHandler extends BaseRowToRowHandler<BaseImportRow> {
             map.put(hasHeader ? headers[i].toString() : Integer.toString(i + 1), row.get(i));
         }
         out.add(row);
+    }
+
+    private boolean isBlankRow(BaseImportRow row) {
+        return row == null || row.size() == 0;
     }
 }

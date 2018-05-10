@@ -8,6 +8,7 @@
     <modules>
         <module>import</module>
         <module>config</module>
+        <module>manager</module>
     </modules>
     <dependencies>
         <dependency>

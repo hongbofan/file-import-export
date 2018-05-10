@@ -1,16 +1,18 @@
 package com.flyread.file.imp0rt.base;
 
+import java.util.Date;
+
 /**
  * @author by hongbf on 2018/3/21.
  */
 public class Book {
     private String isbn;
     private String name;
-    private String infoAuthor;
+    private Date infoAuthor;
     private String infoPublisher;
     private String infoPubdate;
     private String infoPrice;
-    private Double orderCount;
+    private Integer orderCount;
 
     public String getIsbn() {
         return isbn;
@@ -28,11 +30,11 @@ public class Book {
         this.name = name;
     }
 
-    public String getInfoAuthor() {
+    public Date getInfoAuthor() {
         return infoAuthor;
     }
 
-    public void setInfoAuthor(String infoAuthor) {
+    public void setInfoAuthor(Date infoAuthor) {
         this.infoAuthor = infoAuthor;
     }
 
@@ -60,11 +62,11 @@ public class Book {
         this.infoPrice = infoPrice;
     }
 
-    public Double getOrderCount() {
+    public Integer getOrderCount() {
         return orderCount;
     }
 
-    public void setOrderCount(Double orderCount) {
+    public void setOrderCount(Integer orderCount) {
         this.orderCount = orderCount;
     }
 

@@ -2,6 +2,7 @@ package com.flyread.file.imp0rt.util;
 
 import com.flyread.file.imp0rt.excel.ExcelCellType;
 import io.netty.util.internal.*;
+import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
 
@@ -25,7 +26,11 @@ public class ImportUtil {
         }
         switch (type) {
             case CELL_TYPE_NUMERIC:
-                value = cell.getNumericCellValue();
+                if(HSSFDateUtil.isCellDateFormatted(cell)){
+                    value = cell.getDateCellValue();
+                } else {
+                    value = cell.getNumericCellValue();
+                }
                 break;
             case CELL_TYPE_STRING:
                 value = cell.getStringCellValue();

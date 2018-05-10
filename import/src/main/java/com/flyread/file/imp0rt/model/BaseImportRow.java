@@ -1,6 +1,7 @@
 package com.flyread.file.imp0rt.model;
 
 import java.util.Map;
+import java.util.jar.Pack200;
 
 /**
  * @author by hongbf on 2018/3/30.
@@ -15,6 +16,11 @@ public abstract class BaseImportRow {
             return map.get(key);
         }
         return null;
+    }
+    public void set(String key,Object val) {
+        if (headerMatch(key)) {
+            map.put(key,val);
+        }
     }
     public abstract Object[] asArray();
     public abstract int size();

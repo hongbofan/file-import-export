@@ -6,11 +6,21 @@ import java.util.Map;
  * @author by hongbf on 2018/4/2.
  */
 public class ImportConfig {
+
+    private String id;
     private String separator;
-    private Map<String,String> headerMap;
     private String clazzName;
 
     private String importFileCharset;
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getSeparator() {
         return separator;
@@ -18,14 +28,6 @@ public class ImportConfig {
 
     public void setSeparator(String separator) {
         this.separator = separator;
-    }
-
-    public Map<String, String> getHeaderMap() {
-        return headerMap;
-    }
-
-    public void setHeaderMap(Map<String, String> headerMap) {
-        this.headerMap = headerMap;
     }
 
     public String getClazzName() {

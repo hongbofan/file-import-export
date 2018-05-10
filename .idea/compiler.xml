@@ -25,6 +25,7 @@
         <module name="config" />
         <module name="export" />
         <module name="import" />
+        <module name="manager" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -32,6 +33,7 @@
       <module name="export" target="1.8" />
       <module name="file-import-export" target="1.8" />
       <module name="import" target="1.8" />
+      <module name="manager" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

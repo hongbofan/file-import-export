@@ -36,11 +36,14 @@ public class DefaultImportPipeline implements ImportPipeline {
         return this;
     }
 
-/*    @Override
+    @Override
     public ImportPipeline addLast(String name, ImportHandler handler) {
-        return null;
+        final  BaseImportHandlerContext newCtx;
+        newCtx = newContext(handler,name == null ? handler.getClass().getName() : name);
+        addLast0(newCtx);
+        return this;
     }
-
+/*
     @Override
     public ImportPipeline addBefore(String baseName, String name, ImportHandler handler) {
         return null;
@@ -74,21 +77,39 @@ public class DefaultImportPipeline implements ImportPipeline {
         return this;
     }
 
-/*    @Override
+    @Override
     public ImportPipeline addLast(ImportHandler... handlers) {
-        return null;
-    }
+        if (handlers == null) {
+            throw new NullPointerException("handlers");
+        }
+        if (handlers.length == 0 || handlers[0] == null) {
+            return this;
+        }
+        int index;
+        for (index = 1; index < handlers.length; index ++) {
+            if (handlers[index] == null) {
+                break;
+            }
+        }
 
-    @Override
-    public ImportPipeline remove(ImportHandler handler) {
-        return null;
-    }
+        for (int i = index - 1; i >= 0; i --) {
+            ImportHandler h = handlers[i];
+            addLast(null,h);
+        }
 
-    @Override
-    public ImportHandler remove(String name) {
-        return null;
+        return this;
     }
-*/
+    /*
+        @Override
+        public ImportPipeline remove(ImportHandler handler) {
+            return null;
+        }
+
+        @Override
+        public ImportHandler remove(String name) {
+            return null;
+        }
+    */
     @Override
     public Map<String, ImportHandler> toMap() {
         Map<String, ImportHandler> map = new LinkedHashMap<>();
@@ -113,6 +134,14 @@ public class DefaultImportPipeline implements ImportPipeline {
         head.next = newCtx;
         nextCtx.prev = newCtx;
     }
+    private void addLast0(BaseImportHandlerContext newCtx) {
+        BaseImportHandlerContext prevCtx = tail.prev;
+        newCtx.next = tail;
+        newCtx.prev = prevCtx;
+        tail.prev = newCtx;
+        prevCtx.next = newCtx;
+    }
+
     private BaseImportHandlerContext newContext(ImportHandler handler,String name) {
         return new DefaultImportHandlerContext(this,handler,name);
     }

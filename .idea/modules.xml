@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/export/export.iml" filepath="$PROJECT_DIR$/export/export.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/file-import-export.iml" filepath="$PROJECT_DIR$/.idea/file-import-export.iml" />
       <module fileurl="file://$PROJECT_DIR$/import/import.iml" filepath="$PROJECT_DIR$/import/import.iml" />
+      <module fileurl="file://$PROJECT_DIR$/manager/manager.iml" filepath="$PROJECT_DIR$/manager/manager.iml" />
     </modules>
   </component>
 </project>

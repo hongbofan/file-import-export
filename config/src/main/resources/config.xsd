@@ -20,18 +20,24 @@
         <xs:all>
             <xs:element name="separator" type="xs:string" default=" " minOccurs="0"/>
             <xs:element name="importFileCharset" type="xs:string" default="utf-8" minOccurs="0"/>
+            <xs:element name="hasHeader" type="xs:boolean" default="false" minOccurs="0" />
+            <xs:element name="skipBlankRow" type="xs:boolean" default="true" minOccurs="0"/>
         </xs:all>
     </xs:complexType>
     <xs:complexType name="csvType">
         <xs:all>
             <xs:element name="separator" type="xs:string" default=" " minOccurs="0"/>
             <xs:element name="importFileCharset" type="xs:string" default="utf-8" minOccurs="0"/>
+            <xs:element name="hasHeader" type="xs:boolean" default="false" minOccurs="0" />
+            <xs:element name="skipBlankRow" type="xs:boolean" default="true" minOccurs="0"/>
         </xs:all>
     </xs:complexType>
     <xs:complexType name="excelType">
         <xs:all>
             <xs:element name="separator" type="xs:string" default=" " minOccurs="0"/>
             <xs:element name="importFileCharset" type="xs:string" default="utf-8" minOccurs="0"/>
+            <xs:element name="hasHeader" type="xs:boolean" default="false" minOccurs="0" />
+            <xs:element name="skipBlankRow" type="xs:boolean" default="true" minOccurs="0"/>
         </xs:all>
     </xs:complexType>
 
